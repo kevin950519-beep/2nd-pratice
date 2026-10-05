@@ -20,6 +20,8 @@ import defaultProducts from '../../data/products';
  * @param {number} time - 시간 값 0(Day) ~ 1(Night) [Optional, 기본값: 0]
  * @param {number} centerSize - 중앙 그리드 영역 크기 (1-12) [Optional, 기본값: 8]
  * @param {object} columns - ProductGrid 칼럼 수 { xs, sm, md, lg, xl } [Optional, 기본값: { xs: 2, sm: 3, md: 3, lg: 4 }]
+ * @param {boolean} isTransitionEnabled - 필터 전환 애니메이션 사용 여부 [Optional, 기본값: true]
+ * @param {object} transition - 전환 시간 { exit, moveX, moveY, enter, blur } [Optional]
  * @param {number} stickyTop - 필터 sticky 위치 (px) [Optional, 기본값: 88]
  * @param {function} onProductClick - 카드 클릭 시 product를 인자로 호출 [Optional]
  * @param {object} sx - 추가 스타일 [Optional]
@@ -33,6 +35,8 @@ export function ProductShowcase({
   centerSize = 8,
   columns = { xs: 2, sm: 3, md: 3, lg: 4 },
   stickyTop = 88,
+  isTransitionEnabled = true,
+  transition,
   onProductClick,
   sx,
   ...props
@@ -56,6 +60,8 @@ export function ProductShowcase({
         products={ filteredProducts }
         time={ time }
         columns={ columns }
+        isTransitionEnabled={ isTransitionEnabled }
+        transition={ transition }
         onProductClick={ onProductClick }
       />
     </StickyAsideCenterLayout>

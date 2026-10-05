@@ -119,6 +119,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - Indicator: 범용 인디케이터 (`common/ui/Indicator.jsx`)
 - Placeholder: 스토리 예제용 FPO 플레이스홀더 시스템. Box/Image/Media/Text/Line/Paragraph/Card 서브컴포넌트 (`common/ui/Placeholder.jsx`)
 - FilterBar: 필터 바 (`components/templates/FilterBar.jsx`)
-- ProductGrid: 제품 그리드. data/products.js 전체를 ProductCard로 반응형 나열(2/3/4/5열, PC 5열), time 공유 (`components/templates/ProductGrid.jsx`)
+- ProductGrid: 제품 그리드. data/products.js 전체를 ProductCard로 반응형 나열(2/3/4/5열, PC 5열), time 공유. 필터 변경 시 순차 전환(fade-out → 가로 이동 → 세로 이동 → fade-in) (`components/templates/ProductGrid.jsx`)
 - ProductFilter: 제품 type별 필터. CategoryTab vertical 사용, type별 제품 수 표시 (`components/templates/ProductFilter.jsx`)
 - ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링 (`components/templates/ProductShowcase.jsx`)
+- useFilterTransition: 목록 필터 전환 훅. FLIP 직접 구현, exit → 가로 → 세로 → enter 순차, 사선·겹침·시차 없음 (`components/templates/useFilterTransition.js`)

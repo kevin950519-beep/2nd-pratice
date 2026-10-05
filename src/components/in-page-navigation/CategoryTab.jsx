@@ -43,9 +43,7 @@ export function CategoryTab({ categories = [], selected, onChange, orientation =
   return (
     <Box
       sx={{
-        ...(isVertical
-          ? { borderLeft: 1, borderColor: 'divider' }
-          : { borderBottom: 1, borderColor: 'divider', mb: 3 }),
+        ...(!isVertical && { borderBottom: 1, borderColor: 'divider', mb: 3 }),
         ...sx,
       }}
     >
