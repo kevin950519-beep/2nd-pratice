@@ -5,6 +5,7 @@ export { CustomCard } from './CustomCard.jsx';
 export { ImageCard } from './ImageCard.jsx';
 export { MoodboardCard } from './MoodboardCard.jsx';
 export { ProductCard } from './ProductCard.jsx';
+export { BrandValueCard } from './BrandValueCard.jsx';
 
 // Style variant wrapper
 export { CardContainer } from './CardContainer.jsx';

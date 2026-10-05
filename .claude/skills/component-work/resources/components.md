@@ -34,12 +34,14 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - ImageCard: 이미지 카드 (`components/card/ImageCard.jsx`)
 - MoodboardCard: 무드보드 컬렉션 카드. 2x2 썸네일 그리드 (`components/card/MoodboardCard.jsx`)
 - ProductCard: 제품 카드. Day/Night 이미지 쌍을 time(0~1)으로 블렌드(변경 시 0.6초 smooth 전환), type Chip·제품명·lux/K 메타 표시. CustomCard 기반 (`components/card/ProductCard.jsx`)
+- BrandValueCard: 브랜드 가치 카드. content.brandValue.features 항목(icon·title·description·detailedDescription)을 표시. CardContainer 기반 (`components/card/BrandValueCard.jsx`)
 - Card: MUI Card 컴포넌트 [MUI]
 
 ## 4. Media — 이미지, 비디오 표시
 
 - AspectMedia: 비율 기반 미디어 컨테이너 (`components/media/AspectMedia.jsx`)
 - ImageCarousel: 이미지 캐로셀 (`components/media/ImageCarousel.jsx`)
+- TimeBlendImage: Day/Night 이미지 쌍을 time(0~1)으로 블렌드(0.6초 smooth 전환). ProductCard·HeroSection 공유 (`components/media/TimeBlendImage.jsx`)
 - ImageTransition: 이미지 트랜지션 효과 (`components/media/ImageTransition.jsx`)
 - CarouselIndicator: 캐로셀 인디케이터 (`components/media/CarouselIndicator.jsx`)
 
@@ -125,5 +127,8 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - FilterBar: 필터 바 (`components/templates/FilterBar.jsx`)
 - ProductGrid: 제품 그리드. data/products.js 전체를 ProductCard로 반응형 나열(2/3/4/5열, PC 5열), time 공유. 필터 변경 시 순차 전환(fade-out → 가로 이동 → 세로 이동 → fade-in) (`components/templates/ProductGrid.jsx`)
 - ProductFilter: 제품 type별 필터. CategoryTab vertical 사용, type별 제품 수 표시 (`components/templates/ProductFilter.jsx`)
+- HeroSection: 랜딩 히어로. LineGrid 8:4(2:1)로 content.hero.moodboard 이미지 2컷(와이드+세로) 배치, 좌측 이미지 좌상단에 브랜드명·태그라인, TimeBlendImage로 전역 시간에 맞춰 낮밤 블렌딩, 모바일은 세로 스택 (`components/templates/HeroSection.jsx`)
+- BrandValueSection: 브랜드 3가치 섹션. content.brandValue.features를 BrandValueCard(ghost)로 LineGrid에 균등 배치, 모바일은 세로 스택 (`components/templates/BrandValueSection.jsx`)
+- TopSection: 랜딩 최상단 섹션. LineGrid 스택으로 HeroSection + BrandValueSection을 1px 라인으로 이어 붙임. heroProps/brandValueProps로 세부 설정 (`components/templates/TopSection.jsx`)
 - ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링 (`components/templates/ProductShowcase.jsx`)
 - useFilterTransition: 목록 필터 전환 훅. FLIP 직접 구현, exit → 가로 → 세로 → enter 순차, 사선·겹침·시차 없음 (`components/templates/useFilterTransition.js`)

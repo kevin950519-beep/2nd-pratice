@@ -39,6 +39,7 @@ export const content = {
     moodboard: {
       hero: arcLampLiving,
       heroNight: arcLampLivingNight,
+      heroAlt: 'Arc lamp in living space',
       side: archLightGallery,
       sideNight: archLightGalleryNight,
       sideAlt: 'Arch light in gallery space',

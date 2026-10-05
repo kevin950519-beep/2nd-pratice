@@ -22,10 +22,10 @@ const STOP_ICONS = {
  * 글래스모피즘 컨테이너(반투명 배경 + backdrop blur + 얇은 테두리)로 뒤의 콘텐츠가 비쳐 공간감을 준다.
  *
  * 동작 방식:
- * 1. 시간 옆에 시간대와 어울리는 아이콘(해 / 구름 낀 해 / 노을 / 달, 1px 선)을 함께 표시한다
+ * 1. 시간 옆에 시간대와 어울리는 아이콘(해 / 구름 낀 해 / 노을 / 달, 1px 선, 16px)을 함께 표시한다
  *    12:00 / 16:00 / 20:00 / 24:00 버튼 중 하나를 누르면 전역 time이 해당 값(0 / 1/3 / 2/3 / 1)으로 바뀐다
  * 2. 현재 time에 가장 가까운 시간대 버튼이 활성 상태로 표시된다
- * 3. 컨테이너는 큰 border radius(pill), 활성 버튼은 배경을 칠하지 않고 테두리 링 + 진한 글자로만 표시해 유리 투과감을 유지
+ * 3. 컨테이너는 큰 border radius(16~20px), 활성 버튼은 배경을 칠하지 않고 테두리 링 + 진한 글자로만 표시해 유리 투과감을 유지
  * 4. 컨테이너 색은 현재 시간대 테마(background, text)를 따라가므로 낮/밤 모두에서 읽힌다
  * 5. TimelineProvider 안에서 사용해야 한다
  *
@@ -59,7 +59,7 @@ export function FloatingTimelineControl({ offset = 3, sx }) {
         transform: 'translateX(-50%)',
         zIndex: theme.zIndex.speedDial,
         p: 0.5,
-        borderRadius: '9999px', // 숫자는 theme.shape.borderRadius(0)와 곱해지므로 문자열로 지정
+        borderRadius: '20px', // 숫자는 theme.shape.borderRadius(0)와 곱해지므로 문자열로 지정
         border: '1px solid',
         borderColor: alpha(theme.palette.text.primary, 0.16),
         backgroundColor: alpha(theme.palette.background.default, 0.4),
@@ -79,9 +79,14 @@ export function FloatingTimelineControl({ offset = 3, sx }) {
           gap: 0.5,
           '& .MuiToggleButtonGroup-grouped': {
             border: '1px solid transparent',
-            borderRadius: '9999px', // 숫자는 theme.shape.borderRadius(0)와 곱해지므로 문자열로 지정
-            px: { xs: 1.25, sm: 2 },
+            borderRadius: '16px',
+            // 아이콘을 글자 위에 쌓아 가로폭은 줄이고 세로 길이를 늘린다
+            flexDirection: 'column',
+            minWidth: { xs: 52, sm: 60 },
+            px: 1,
+            py: 1.25,
             gap: 0.75,
+            fontSize: '0.75rem',
             color: 'text.secondary',
             textTransform: 'none',
             backgroundColor: 'transparent',
@@ -89,9 +94,9 @@ export function FloatingTimelineControl({ offset = 3, sx }) {
               duration: theme.transitions.duration.slow,
               easing: theme.transitions.easing.smooth,
             }),
-            // MUI 그룹 기본 규칙(인접 버튼 모서리 0, 음수 마진)을 되돌려 각 버튼을 독립된 pill로 유지
+            // MUI 그룹 기본 규칙(인접 버튼 모서리 0, 음수 마진)을 되돌려 각 버튼을 독립된 둥근 버튼으로 유지
             '&:not(:first-of-type), &:not(:last-of-type)': {
-              borderRadius: '9999px', // 숫자는 theme.shape.borderRadius(0)와 곱해지므로 문자열로 지정
+              borderRadius: '16px',
               marginLeft: 0,
               border: '1px solid transparent',
             },
@@ -112,7 +117,7 @@ export function FloatingTimelineControl({ offset = 3, sx }) {
       >
         { TIMELINE_STOPS.map(({ key, label, name }) => (
           <ToggleButton key={ key } value={ key } aria-label={ `${label} ${name}` }>
-            <LucideIcon icon={ STOP_ICONS[key] } fontSize="small" />
+            <LucideIcon icon={ STOP_ICONS[key] } sx={ { fontSize: '1rem' } } />
             { label }
           </ToggleButton>
         )) }
