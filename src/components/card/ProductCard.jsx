@@ -12,7 +12,7 @@ import { CustomCard } from './CustomCard';
  * 동작 방식:
  * 1. images[0] (Day) 위에 images[1] (Night)을 겹쳐 time 값만큼 opacity 블렌드
  * 2. 이미지가 1장뿐이면 블렌드 없이 단일 이미지 표시
- * 3. hover 시 카드가 살짝 떠오르고 이미지가 미세하게 확대
+ * 3. 평소엔 테두리가 보이지 않고(투명), hover 시 테두리 라인 표시 + 카드가 살짝 떠오르고 이미지가 미세하게 확대
  * 4. 하단에 type Chip, 제품명, 조도·색온도 메타(중앙점 구분) 순으로 표시
  *
  * Props:
@@ -22,7 +22,7 @@ import { CustomCard } from './CustomCard';
  * @param {number} lux - 조도(lx) [Optional]
  * @param {number} kelvin - 색온도(K) [Optional]
  * @param {number} time - 시간 값 0(Day) ~ 1(Night) [Optional, 기본값: 0]
- * @param {string} mediaRatio - 이미지 비율 [Optional, 기본값: '4/5']
+ * @param {string} mediaRatio - 이미지 비율 (에셋 원본 규격 1792x2400) [Optional, 기본값: '1792/2400']
  * @param {function} onClick - 카드 클릭 핸들러 [Optional]
  * @param {object} sx - 추가 스타일 [Optional]
  *
@@ -44,7 +44,7 @@ export function ProductCard({
   lux,
   kelvin,
   time = 0,
-  mediaRatio = '4/5',
+  mediaRatio = '1792/2400',
   onClick,
   sx,
   ...props
@@ -57,7 +57,7 @@ export function ProductCard({
     inset: 0,
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    objectFit: 'contain',
   };
 
   const media = (
@@ -81,11 +81,13 @@ export function ProductCard({
     <CustomCard
       layout="vertical"
       mediaSlot={ media }
+      mediaRatio="auto"
       contentPadding="sm"
       hoverLift={ 4 }
+      hoverBorderColor="common.black"
       hoverMediaScale={ 1.03 }
       onClick={ onClick }
-      sx={ { cursor: onClick ? 'pointer' : 'default', ...sx } }
+      sx={ { cursor: onClick ? 'pointer' : 'default', borderColor: 'transparent', ...sx } }
       {...props}
     >
       { type && (

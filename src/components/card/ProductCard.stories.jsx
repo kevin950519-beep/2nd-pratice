@@ -16,7 +16,7 @@ export default {
     time: { control: { type: 'range', min: 0, max: 1, step: 0.01 }, description: '시간 값 (0: Day, 1: Night)' },
     mediaRatio: {
       control: 'select',
-      options: ['1/1', '4/5', '3/4', '4/3'],
+      options: ['1792/2400', '1/1', '4/5', '3/4', '4/3'],
       description: '이미지 비율',
     },
     onClick: { action: 'clicked', description: '카드 클릭 핸들러' },
@@ -33,7 +33,7 @@ export const Default = {
     lux: first.lux,
     kelvin: first.kelvin,
     time: 0,
-    mediaRatio: '4/5',
+    mediaRatio: '1792/2400',
   },
   render: (args) => (
     <Box sx={ { maxWidth: 320, p: 2 } }>
