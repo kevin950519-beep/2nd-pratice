@@ -15,12 +15,13 @@ export const ALL_TYPES = 'all';
  * @param {string} selected - 현재 선택된 type ('all' 또는 product.type) [Required]
  * @param {function} onChange - 변경 핸들러 (type) => void [Required]
  * @param {object[]} products - 필터 기준 제품 배열 [Optional, 기본값: data/products.js 전체]
+ * @param {string} orientation - 탭 방향 ('horizontal' | 'vertical') [Optional, 기본값: 'vertical']
  * @param {object} sx - 추가 스타일 [Optional]
  *
  * Example usage:
- * <ProductFilter selected={ type } onChange={ setType } />
+ * <ProductFilter selected={ type } onChange={ setType } orientation="horizontal" />
  */
-export function ProductFilter({ selected, onChange, products = defaultProducts, sx }) {
+export function ProductFilter({ selected, onChange, products = defaultProducts, orientation = 'vertical', sx }) {
   const categories = useMemo(() => {
     const counts = products.reduce((acc, { type }) => {
       acc[type] = (acc[type] || 0) + 1;
@@ -41,7 +42,7 @@ export function ProductFilter({ selected, onChange, products = defaultProducts, 
       categories={ categories }
       selected={ selected }
       onChange={ onChange }
-      orientation="vertical"
+      orientation={ orientation }
       sx={ sx }
     />
   );

@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { ProductCard } from './ProductCard';
+import { TimelineButtons } from '../input/TimelineButtons';
 import products from '../../data/products';
 
 export default {
@@ -45,6 +47,20 @@ export const Default = {
 export const TimeBlend = {
   args: { ...Default.args, time: 0.5 },
   render: Default.render,
+};
+
+export const TimeTransition = {
+  args: { ...Default.args },
+  render: ({ time: initialTime, ...args }) => {
+    const [time, setTime] = useState(initialTime);
+
+    return (
+      <Box sx={ { maxWidth: 320, p: 2 } }>
+        <TimelineButtons time={ time } onChange={ setTime } size="small" sx={ { mb: 2 } } />
+        <ProductCard { ...args } time={ time } />
+      </Box>
+    );
+  },
 };
 
 export const Grid4 = {

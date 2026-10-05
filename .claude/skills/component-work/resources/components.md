@@ -33,7 +33,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - CustomCard: 미디어+콘텐츠 카드. vertical/horizontal/overlay 레이아웃 (`components/card/CustomCard.jsx`)
 - ImageCard: 이미지 카드 (`components/card/ImageCard.jsx`)
 - MoodboardCard: 무드보드 컬렉션 카드. 2x2 썸네일 그리드 (`components/card/MoodboardCard.jsx`)
-- ProductCard: 제품 카드. Day/Night 이미지 쌍을 time(0~1)으로 블렌드, type Chip·제품명·lux/K 메타 표시. CustomCard 기반 (`components/card/ProductCard.jsx`)
+- ProductCard: 제품 카드. Day/Night 이미지 쌍을 time(0~1)으로 블렌드(변경 시 0.6초 smooth 전환), type Chip·제품명·lux/K 메타 표시. CustomCard 기반 (`components/card/ProductCard.jsx`)
 - Card: MUI Card 컴포넌트 [MUI]
 
 ## 4. Media — 이미지, 비디오 표시
@@ -57,6 +57,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - FileDropzone: 파일 드래그&드롭 영역 (`components/input/FileDropzone.jsx`)
 - SearchBar: 검색 입력 바 (`components/input/SearchBar.jsx`)
 - TagInput: 태그 입력 필드 (`components/input/TagInput.jsx`)
+- TimelineButtons: 시간대 버튼. 12/16/20/24시 4개 ToggleButton으로 time(0~1) 선택, 가까운 구간 활성 표시 (`components/input/TimelineButtons.jsx`)
 - Button: MUI Button 컴포넌트 [MUI]
 - Checkbox: MUI Checkbox 컴포넌트 [MUI]
 - Select: MUI Select 컴포넌트 [MUI]
@@ -121,5 +122,5 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - FilterBar: 필터 바 (`components/templates/FilterBar.jsx`)
 - ProductGrid: 제품 그리드. data/products.js 전체를 ProductCard로 반응형 나열(2/3/4/5열, PC 5열), time 공유. 필터 변경 시 순차 전환(fade-out → 가로 이동 → 세로 이동 → fade-in) (`components/templates/ProductGrid.jsx`)
 - ProductFilter: 제품 type별 필터. CategoryTab vertical 사용, type별 제품 수 표시 (`components/templates/ProductFilter.jsx`)
-- ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링 (`components/templates/ProductShowcase.jsx`)
+- ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링, onTimeChange 전달 시 시간대 버튼 표시 (`components/templates/ProductShowcase.jsx`)
 - useFilterTransition: 목록 필터 전환 훅. FLIP 직접 구현, exit → 가로 → 세로 → enter 순차, 사선·겹침·시차 없음 (`components/templates/useFilterTransition.js`)

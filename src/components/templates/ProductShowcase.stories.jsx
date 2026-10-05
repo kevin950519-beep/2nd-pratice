@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { ProductShowcase } from './ProductShowcase';
 
@@ -13,6 +14,7 @@ export default {
     stickyTop: { control: { type: 'number', min: 0, max: 200 }, description: '필터 sticky 위치(px)' },
     isTransitionEnabled: { control: 'boolean', description: '필터 전환 애니메이션 사용 여부' },
     transition: { control: 'object', description: '전환 시간 { exit, moveX, moveY, enter, blur } (초/px)' },
+    onTimeChange: { action: 'timeChanged', description: '시간대 버튼 선택 핸들러 (전달 시 버튼 표시)' },
     onProductClick: { action: 'productClicked', description: '카드 클릭 핸들러 (product 전달)' },
   },
 };
@@ -26,9 +28,14 @@ export const Default = {
     isTransitionEnabled: true,
     transition: { exit: 0.6, moveX: 0.6, moveY: 0.6, enter: 0.8, blur: 8 },
   },
-  render: (args) => (
-    <Box sx={ { maxWidth: 1440, mx: 'auto', p: 2 } }>
-      <ProductShowcase { ...args } />
-    </Box>
-  ),
+  render: ({ time: initialTime, ...args }) => {
+    const [time, setTime] = useState(initialTime);
+    useEffect(() => setTime(initialTime), [initialTime]);
+
+    return (
+      <Box sx={ { maxWidth: 1440, mx: 'auto', p: 2 } }>
+        <ProductShowcase { ...args } time={ time } onTimeChange={ setTime } />
+      </Box>
+    );
+  },
 };
