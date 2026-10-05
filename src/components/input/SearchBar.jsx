@@ -2,9 +2,8 @@ import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
-import TuneIcon from '@mui/icons-material/Tune';
+import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * SearchBar 컴포넌트
@@ -110,7 +109,7 @@ export function SearchBar({
           backgroundColor: 'background.paper',
           border: '1px solid',
           borderColor: isFocused ? 'primary.main' : 'divider',
-          boxShadow: isFocused ? '0 0 0 3px rgba(0, 0, 255, 0.1)' : 'none',
+          boxShadow: (theme) => (isFocused ? `0 0 0 3px ${theme.palette.action.focus}` : 'none'),
           '&:hover': {
             borderColor: isFocused ? 'primary.main' : 'text.secondary',
           },
@@ -172,7 +171,7 @@ export function SearchBar({
         }}
         aria-label="search"
       >
-        <SearchIcon fontSize={currentSize.iconSize} />
+        <LucideIcon icon={ Search } fontSize={currentSize.iconSize} />
       </IconButton>
 
       {/* 검색 입력 필드 */}
@@ -212,7 +211,7 @@ export function SearchBar({
           }}
           aria-label="clear search"
         >
-          <ClearIcon fontSize={currentSize.iconSize} />
+          <LucideIcon icon={ X } fontSize={currentSize.iconSize} />
         </IconButton>
       )}
 
@@ -232,7 +231,7 @@ export function SearchBar({
           aria-label="toggle filter"
           aria-pressed={isFilterActive}
         >
-          <TuneIcon fontSize={currentSize.iconSize} />
+          <LucideIcon icon={ SlidersHorizontal } fontSize={currentSize.iconSize} />
         </IconButton>
       )}
     </Box>

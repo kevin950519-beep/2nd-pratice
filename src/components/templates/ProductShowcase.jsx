@@ -1,7 +1,5 @@
 import { useMemo, useState } from 'react';
-import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { TimelineButtons } from '../input/TimelineButtons';
 import StickyAsideCenterLayout from '../layout/StickyAsideCenterLayout';
 import { ProductFilter, ALL_TYPES } from './ProductFilter';
 import { ProductGrid } from './ProductGrid';
@@ -16,13 +14,11 @@ import defaultProducts from '../../data/products';
  * 동작 방식:
  * 1. 좌측 ProductFilter에서 type 선택 → 해당 type의 제품만 그리드에 표시
  * 2. 'All' 선택 시 전체 제품 표시
- * 3. onTimeChange를 전달하면 그리드 상단에 시간대 버튼(12/16/20/24시)이 나타나며, 선택 시 모든 카드가 같은 시각으로 블렌딩
- * 4. 모바일(md 미만)에서는 필터가 상단 가로 탭, 그리드가 하단으로 스택
+ * 3. 모바일(md 미만)에서는 필터가 상단 가로 탭, 그리드가 하단으로 스택
  *
  * Props:
  * @param {object[]} products - 제품 배열 [Optional, 기본값: data/products.js 전체]
  * @param {number} time - 시간 값 0(Day) ~ 1(Night) [Optional, 기본값: 0]
- * @param {function} onTimeChange - 시간대 버튼 선택 핸들러 (time) => void. 전달 시에만 버튼 표시 [Optional]
  * @param {number} centerSize - 중앙 그리드 영역 크기 (1-12) [Optional, 기본값: 8]
  * @param {object} columns - ProductGrid 칼럼 수 { xs, sm, md, lg, xl } [Optional, 기본값: { xs: 2, sm: 3, md: 3, lg: 4 }]
  * @param {boolean} isTransitionEnabled - 필터 전환 애니메이션 사용 여부 [Optional, 기본값: true]
@@ -32,12 +28,11 @@ import defaultProducts from '../../data/products';
  * @param {object} sx - 추가 스타일 [Optional]
  *
  * Example usage:
- * <ProductShowcase time={ time } onTimeChange={ setTime } onProductClick={ (p) => navigate(`/product/${p.id}`) } />
+ * <ProductShowcase time={ time } onProductClick={ (p) => navigate(`/product/${p.id}`) } />
  */
 export function ProductShowcase({
   products = defaultProducts,
   time = 0,
-  onTimeChange,
   centerSize = 8,
   columns = { xs: 2, sm: 3, md: 3, lg: 4 },
   stickyTop = 88,
@@ -70,11 +65,6 @@ export function ProductShowcase({
       sx={ sx }
       { ...props }
     >
-      { onTimeChange && (
-        <Box sx={ { display: 'flex', justifyContent: 'flex-end', mb: 3 } }>
-          <TimelineButtons time={ time } onChange={ onTimeChange } size="small" />
-        </Box>
-      ) }
       <ProductGrid
         products={ filteredProducts }
         time={ time }

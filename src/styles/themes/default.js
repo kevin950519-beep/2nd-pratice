@@ -18,6 +18,7 @@
  */
 
 import { createTheme } from '@mui/material/styles';
+import { SelectChevron, chipDeleteIcon, checkboxIcons, alertIconMapping } from './themeIcons';
 
 // ============================================================
 // Lumenstate Brand Colors (4색 제한)
@@ -138,11 +139,12 @@ const palette = {
   // Lumenstate 커스텀 토큰
   brand: BRAND_COLORS,
 
-  // 시간대별 배경색 토큰 (Day<>Night 4등분 선형 보간)
+  // 시간대별 배경색 토큰. 제품 Day 이미지 배경(#F5F5F5)↔Night 이미지 배경(#12100E)의 선형 보간.
+  // 이미지 재보정: scripts/normalize-product-bg.js
   timeline: {
-    noon: '#E8E5E1',      // 12pm
-    afternoon: '#A19F9B',  // 4pm (선형 보간)
-    evening: '#595654',    // 8pm (선형 보간)
+    noon: '#F5F5F5',      // 12pm (Day 이미지 배경과 동일)
+    afternoon: '#A9A9A8',  // 4pm (선형 보간)
+    evening: '#5E5C5B',    // 8pm (선형 보간)
     midnight: '#12100E',   // 12am
   },
 
@@ -402,12 +404,18 @@ const transitions = {
 // ============================================================
 // 9. Components (컴포넌트 오버라이드)
 // ============================================================
-const components = {
+/**
+ * 컴포넌트 오버라이드 팩토리
+ * 색상은 전달받은 palette 토큰만 참조해 라이트/다크/시간대 테마가 공유한다.
+ * @param {object} p - MUI palette
+ */
+const buildComponents = (p) => ({
   MuiCssBaseline: {
     styleOverrides: {
       body: {
         scrollbarWidth: 'thin',
-        backgroundColor: BRAND_COLORS.wallTintWhite,
+        backgroundColor: p.background.default,
+        color: p.text.primary,
       },
     },
   },
@@ -435,10 +443,22 @@ const components = {
     },
   },
   MuiChip: {
+    defaultProps: {
+      deleteIcon: chipDeleteIcon,
+    },
     styleOverrides: {
       root: {
         borderRadius: 0,
       },
+    },
+  },
+  // MUI 내장 아이콘을 lucide로 교체
+  MuiCheckbox: {
+    defaultProps: checkboxIcons,
+  },
+  MuiAlert: {
+    defaultProps: {
+      iconMapping: alertIconMapping,
     },
   },
   MuiTextField: {
@@ -459,16 +479,16 @@ const components = {
       root: {
         fontSize: '0.9375rem',
         fontWeight: 400,
-        borderBottom: `1px solid ${BRAND_COLORS.warmBlack}1F`,
+        borderBottom: `1px solid ${p.text.primary}1F`,
         transition: 'border-color 200ms ease',
         '&:hover': {
-          borderBottomColor: `${BRAND_COLORS.warmBlack}CC`,
+          borderBottomColor: `${p.text.primary}CC`,
         },
         '&.Mui-focused': {
-          borderBottomColor: BRAND_COLORS.warmBlack,
+          borderBottomColor: p.text.primary,
         },
         '&.Mui-disabled': {
-          borderBottomColor: `${BRAND_COLORS.warmBlack}1F`,
+          borderBottomColor: `${p.text.primary}1F`,
         },
       },
       input: {
@@ -477,7 +497,7 @@ const components = {
         paddingBottom: 4,
         height: 'auto',
         '&::placeholder': {
-          color: `${BRAND_COLORS.warmBlack}CC`,
+          color: `${p.text.primary}CC`,
           opacity: 0.6,
         },
       },
@@ -489,12 +509,15 @@ const components = {
         fontSize: '0.75rem',
         fontWeight: 500,
         letterSpacing: '0.02em',
-        color: `${BRAND_COLORS.warmBlack}CC`,
+        color: `${p.text.primary}CC`,
       },
     },
   },
   // Underline Select 스타일 (standard variant)
   MuiSelect: {
+    defaultProps: {
+      IconComponent: SelectChevron,
+    },
     styleOverrides: {
       standard: {
         padding: 0,
@@ -505,7 +528,7 @@ const components = {
         },
       },
       icon: {
-        color: `${BRAND_COLORS.warmBlack}CC`,
+        color: `${p.text.primary}CC`,
         right: 0,
         transition: 'transform 200ms ease',
       },
@@ -533,11 +556,13 @@ const components = {
         letterSpacing: '0.02em',
       },
       separator: {
-        color: `${BRAND_COLORS.warmBlack}CC`,
+        color: `${p.text.primary}CC`,
       },
     },
   },
-};
+});
+
+const components = buildComponents(palette);
 
 // ============================================================
 // Theme 생성
@@ -559,6 +584,7 @@ export default defaultTheme;
 // 개별 토큰 내보내기 (Storybook 문서화용)
 export {
   BRAND_COLORS,
+  buildComponents,
   palette,
   typography,
   spacing,

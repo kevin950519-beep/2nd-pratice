@@ -7,10 +7,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import StarIcon from '@mui/icons-material/Star';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { DocumentTitle, PageContainer, SectionTitle } from '../storybookDocumentation';
 import Placeholder, { placeholderSvg } from '../../common/ui/Placeholder';
 import {
@@ -19,6 +15,8 @@ import {
   InlineIcon,
   InlineImage,
 } from '.';
+import { Heart, Rocket, Sparkles, Star } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 export default {
   title: 'Component/1. Typography/InlineTypography',
@@ -67,7 +65,7 @@ const sampleImages = {
 export const Default = {
   render: () => (
     <InlineTypography variant="h4">
-      We build <InlineIcon icon={ <StarIcon /> } color="primary.main" size={ 1 } /> amazing products.
+      We build <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="primary.main" size={ 1 } /> amazing products.
     </InlineTypography>
   ),
 };
@@ -127,24 +125,24 @@ export const Documentation = {
         <Stack spacing={ 3 }>
           <Box sx={ { p: 3, border: '1px solid', borderColor: 'divider' } }>
             <InlineTypography variant="h4">
-              We <InlineIcon icon={ <FavoriteIcon /> } color="error.main" /> building
-              <InlineIcon icon={ <AutoAwesomeIcon /> } color="warning.main" /> products.
+              We <InlineIcon icon={ <LucideIcon icon={ Heart } isFilled /> } color="error.main" /> building
+              <InlineIcon icon={ <LucideIcon icon={ Sparkles } /> } color="warning.main" /> products.
             </InlineTypography>
           </Box>
 
           <Box sx={ { p: 3, border: '1px solid', borderColor: 'divider' } }>
             <InlineTypography variant="h3">
-              Launch your ideas <InlineIcon icon={ <RocketLaunchIcon /> } color="primary.main" size={ 1.2 } /> today.
+              Launch your ideas <InlineIcon icon={ <LucideIcon icon={ Rocket } /> } color="primary.main" size={ 1.2 } /> today.
             </InlineTypography>
           </Box>
 
           <Box sx={ { p: 3, border: '1px solid', borderColor: 'divider' } }>
             <InlineTypography variant="body1">
-              This feature received <InlineIcon icon={ <StarIcon /> } color="warning.main" />
-              <InlineIcon icon={ <StarIcon /> } color="warning.main" />
-              <InlineIcon icon={ <StarIcon /> } color="warning.main" />
-              <InlineIcon icon={ <StarIcon /> } color="warning.main" />
-              <InlineIcon icon={ <StarIcon /> } color="warning.main" /> 5-star rating from our users.
+              This feature received <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="warning.main" />
+              <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="warning.main" />
+              <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="warning.main" />
+              <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="warning.main" />
+              <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="warning.main" /> 5-star rating from our users.
             </InlineTypography>
           </Box>
         </Stack>
@@ -220,7 +218,7 @@ export const Documentation = {
               align=&quot;middle&quot; (기본)
             </Typography>
             <InlineTypography variant="h4">
-              Text with <InlineIcon icon={ <StarIcon /> } color="primary.main" align="middle" /> icon aligned to middle.
+              Text with <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="primary.main" align="middle" /> icon aligned to middle.
             </InlineTypography>
           </Box>
 
@@ -229,7 +227,7 @@ export const Documentation = {
               align=&quot;baseline&quot;
             </Typography>
             <InlineTypography variant="h4">
-              Text with <InlineIcon icon={ <StarIcon /> } color="primary.main" align="baseline" /> icon aligned to baseline.
+              Text with <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="primary.main" align="baseline" /> icon aligned to baseline.
             </InlineTypography>
           </Box>
 
@@ -238,7 +236,7 @@ export const Documentation = {
               align=&quot;top&quot;
             </Typography>
             <InlineTypography variant="h4">
-              Text with <InlineIcon icon={ <StarIcon /> } color="primary.main" align="top" /> icon aligned to top.
+              Text with <InlineIcon icon={ <LucideIcon icon={ Star } isFilled /> } color="primary.main" align="top" /> icon aligned to top.
             </InlineTypography>
           </Box>
         </Stack>
@@ -270,7 +268,7 @@ export const Documentation = {
         >
           {`// 아이콘과 함께
 <InlineTypography variant="h4">
-  We <InlineIcon icon={<FavoriteIcon />} color="error.main" /> building products.
+  We <InlineIcon icon={<LucideIcon icon={ Heart } isFilled />} color="error.main" /> building products.
 </InlineTypography>
 
 // 이미지와 함께

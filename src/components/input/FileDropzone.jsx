@@ -3,10 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LinearProgress from '@mui/material/LinearProgress';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import ImageIcon from '@mui/icons-material/Image';
-import CloseIcon from '@mui/icons-material/Close';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { CircleCheck, CloudUpload, Image, X } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * FileDropzone 컴포넌트
@@ -248,7 +246,7 @@ export function FileDropzone({
               borderRadius: 1,
             }}
           >
-            <CheckCircleIcon fontSize="small" />
+            <LucideIcon icon={ CircleCheck } fontSize="small" />
             <Typography variant="caption" sx={{ fontWeight: 600 }}>
               Uploaded
             </Typography>
@@ -301,7 +299,7 @@ export function FileDropzone({
               },
             }}
           >
-            <CloseIcon fontSize="small" />
+            <LucideIcon icon={ X } fontSize="small" />
           </IconButton>
         )}
       </Box>
@@ -361,9 +359,9 @@ export function FileDropzone({
         }}
       >
         {isDragActive ? (
-          <CloudUploadIcon sx={{ fontSize: 28 }} />
+          <LucideIcon icon={ CloudUpload } sx={{ fontSize: 28 }} />
         ) : (
-          <ImageIcon sx={{ fontSize: 28 }} />
+          <LucideIcon icon={ Image } sx={{ fontSize: 28 }} />
         )}
       </Box>
 

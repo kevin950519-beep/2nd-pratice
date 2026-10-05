@@ -2,13 +2,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AppShell } from './AppShell';
 import { NavMenu } from '../navigation/NavMenu';
 import { DocumentTitle, PageContainer } from '../storybookDocumentation';
 import { SectionContainer } from '../container/SectionContainer';
 import Placeholder from '../../common/ui/Placeholder';
+import { CircleUser, Search } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 // Navigation Items
 const navItems = [
@@ -54,7 +54,7 @@ export const Default = {
             }
             headerPersistent={
               <IconButton size="small">
-                <AccountCircleIcon />
+                <LucideIcon icon={ CircleUser } />
               </IconButton>
             }
             headerCollapsible={
@@ -125,7 +125,7 @@ export const FullFeatured = {
             headerPersistent={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <IconButton size="small">
-                  <SearchIcon />
+                  <LucideIcon icon={ Search } />
                 </IconButton>
                 <Button variant="contained" size="small" sx={{ display: { xs: 'none', sm: 'flex' } }}>
                   Get Started

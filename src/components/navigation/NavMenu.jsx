@@ -28,8 +28,8 @@ import Typography from '@mui/material/Typography';
  * Example usage:
  * <NavMenu
  *   items={[
- *     { id: 'home', label: 'Home', icon: <HomeIcon /> },
- *     { id: 'about', label: 'About', icon: <InfoIcon /> },
+ *     { id: 'home', label: 'Home', icon: <LucideIcon icon={ House } /> },
+ *     { id: 'about', label: 'About', icon: <LucideIcon icon={ Info } /> },
  *   ]}
  *   activeId="home"
  *   onItemClick={(item) => navigate(item.href)}

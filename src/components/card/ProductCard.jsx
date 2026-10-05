@@ -102,14 +102,14 @@ export function ProductCard({
       mediaRatio="auto"
       contentPadding="sm"
       hoverLift={ 4 }
-      hoverBorderColor="common.black"
+      hoverBorderColor="primary.main"
       hoverMediaScale={ 1.03 }
       onClick={ onClick }
       sx={ { cursor: onClick ? 'pointer' : 'default', borderColor: 'transparent', ...sx } }
       {...props}
     >
       { type && (
-        <Chip label={ type } size="small" variant="filled" sx={ { mb: 1, height: 20, fontSize: '0.7rem', bgcolor: 'common.black', color: 'common.white' } } />
+        <Chip label={ type } size="small" variant="filled" sx={ { mb: 1, height: 20, fontSize: '0.7rem', bgcolor: 'primary.main', color: 'primary.contrastText' } } />
       ) }
       <Typography variant="subtitle1" sx={ { fontWeight: 700 } }>
         { title }

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Menu, X } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * GNB Context
@@ -124,7 +124,7 @@ const GNB = forwardRef(function GNB({
           size="small"
           aria-label="Close menu"
         >
-          <CloseIcon />
+          <LucideIcon icon={ X } />
         </IconButton>
       </Box>
 
@@ -190,7 +190,7 @@ const GNB = forwardRef(function GNB({
               aria-label="Open menu"
               aria-expanded={isDrawerOpen}
             >
-              <MenuIcon />
+              <LucideIcon icon={ Menu } />
             </IconButton>
           )}
         </Box>

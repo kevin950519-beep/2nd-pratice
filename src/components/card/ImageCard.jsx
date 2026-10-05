@@ -2,8 +2,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CustomCard } from './CustomCard';
+import { Heart } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * ImageCard 컴포넌트
@@ -80,7 +81,7 @@ export function ImageCard({
           '&:hover': { bgcolor: 'white' },
         }}
       >
-        <FavoriteBorderIcon fontSize="small" />
+        <LucideIcon icon={ Heart } fontSize="small" />
       </IconButton>
     </Box>
   );

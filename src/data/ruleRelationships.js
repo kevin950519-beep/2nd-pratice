@@ -5,7 +5,7 @@
  * 직접 수정하지 마세요. 수정이 필요하면 스크립트를 수정하세요.
  *
  * 생성: pnpm generate-rules
- * 생성일: 2026-04-15
+ * 생성일: 2026-10-05
  */
 
 export const priorityMeta = {
@@ -58,7 +58,7 @@ export const ruleNodes = [
     "name": "component-work (Skill)",
     "priority": "Skill",
     "path": ".claude/skills/component-work/SKILL.md",
-    "description": "Creates, modifies, deletes UI components and their Storybook stories. Manages component taxonomy, design tokens, and interactive patterns for MUI-based design system."
+    "description": "ALWAYS invoke this skill when files under src/components/ are created, modified, or deleted. Do not edit component files directly — use this skill first. Also trigger for any story file (.stories.jsx) work. Manages component taxonomy, design tokens, and interactive patterns for MUI-based design system."
   },
   {
     "id": "component-work--components",

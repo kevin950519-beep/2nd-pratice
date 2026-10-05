@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * CarouselContainer 컴포넌트
@@ -273,7 +273,7 @@ const CarouselContainer = forwardRef(function CarouselContainer({
               left: navOffset,
             }}
           >
-            <ChevronLeftIcon sx={{ fontSize: iconSize }} />
+            <LucideIcon icon={ ChevronLeft } sx={{ fontSize: iconSize }} />
           </IconButton>
 
           <IconButton
@@ -285,7 +285,7 @@ const CarouselContainer = forwardRef(function CarouselContainer({
               right: navOffset,
             }}
           >
-            <ChevronRightIcon sx={{ fontSize: iconSize }} />
+            <LucideIcon icon={ ChevronRight } sx={{ fontSize: iconSize }} />
           </IconButton>
         </>
       )}

@@ -3,11 +3,10 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddIcon from '@mui/icons-material/Add';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Placeholder, { placeholderSvg } from '../../common/ui/Placeholder';
 import { CustomCard } from './CustomCard';
+import { Heart, Play, Plus } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 export default {
   title: 'Component/3. Card/CustomCard',
@@ -243,7 +242,7 @@ export const WithOverlaySlot = {
               '&:hover': { bgcolor: 'white' },
             } }
           >
-            <FavoriteBorderIcon fontSize="small" />
+            <LucideIcon icon={ Heart } fontSize="small" />
           </IconButton>
           <IconButton
             size="small"
@@ -254,7 +253,7 @@ export const WithOverlaySlot = {
               '&:hover': { bgcolor: 'primary.dark' },
             } }
           >
-            <AddIcon fontSize="small" />
+            <LucideIcon icon={ Plus } fontSize="small" />
           </IconButton>
         </Box>
       }
@@ -337,7 +336,7 @@ export const Interactive = {
               '&:hover': { bgcolor: 'rgba(0,0,0,0.8)' },
             } }
           >
-            <PlayArrowIcon fontSize="large" />
+            <LucideIcon icon={ Play } fontSize="large" />
           </IconButton>
         </Box>
       }

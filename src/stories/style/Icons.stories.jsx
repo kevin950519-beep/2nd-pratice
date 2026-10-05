@@ -1,274 +1,162 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import {
-	DocumentTitle,
-	PageContainer,
-	SectionTitle,
-} from "../../components/storybookDocumentation";
+  ArrowUpDown, Briefcase, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, CircleCheck, CircleUser,
+  CloudUpload, Heart, House, Image, Images, Info, LayoutDashboard, LayoutGrid, List, ListFilter, Mail,
+  Menu, Pencil, Play, Plus, Quote, Rocket, Search, Settings, SlidersHorizontal, Sparkles, Star, Trash2,
+  TriangleAlert, X,
+} from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
+import {
+  DocumentTitle,
+  PageContainer,
+  SectionTitle,
+} from '../../components/storybookDocumentation';
 
-/** Style class name mapping */
-const STYLE_CLASS_MAP = {
-	outlined: "material-symbols-outlined",
-	rounded: "material-symbols-rounded",
-	sharp: "material-symbols-sharp",
+/** 프로젝트에서 사용하는 아이콘 목록 (lucide-react 컴포넌트 이름 → 컴포넌트) */
+const ICONS = {
+  ArrowUpDown, Briefcase, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, CircleCheck, CircleUser,
+  CloudUpload, Heart, House, Image, Images, Info, LayoutDashboard, LayoutGrid, List, ListFilter, Mail,
+  Menu, Pencil, Play, Plus, Quote, Rocket, Search, Settings, SlidersHorizontal, Sparkles, Star, Trash2,
+  TriangleAlert, X,
 };
-
-/**
- * MaterialSymbol Component
- *
- * Props:
- * @param {string} name - Icon name from Material Symbols [Required]
- * @param {string} variant - Icon style ('outlined' | 'rounded' | 'sharp') [Optional, default: 'outlined']
- * @param {number} size - Icon size in px [Optional, default: 24]
- * @param {boolean} fill - Fill state (Fill axis) [Optional, default: false]
- * @param {number} weight - Stroke weight (Weight axis) [Optional, default: 400]
- * @param {string} color - Icon color [Optional, default: 'inherit']
- *
- * Example usage:
- * <MaterialSymbol name="favorite" variant="rounded" size={ 32 } fill />
- */
-const MaterialSymbol = ({
-	name,
-	variant = "outlined",
-	size = 24,
-	fill = false,
-	weight = 400,
-	color = "inherit",
-}) => (
-	<span
-		className={STYLE_CLASS_MAP[variant] || STYLE_CLASS_MAP.outlined}
-		style={{
-			fontSize: size,
-			color,
-			fontVariationSettings: `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}`,
-			lineHeight: 1,
-			display: "inline-block",
-			verticalAlign: "middle",
-		}}
-	>
-		{name}
-	</span>
-);
 
 export default {
-	title: "Style/Icons",
-	component: MaterialSymbol,
-	tags: ["autodocs"],
-	parameters: {
-		layout: "centered",
-		docs: {
-			description: {
-				component: `
-## Material Symbols
+  title: 'Style/Icons',
+  component: LucideIcon,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Lucide Icons
 
-Google Material Symbols is a Variable Font based icon system with 2,500+ icons.
+프로젝트 기본 아이콘은 **lucide-react**이며, MUI SvgIcon 래퍼 \`LucideIcon\`(\`common/ui/LucideIcon.jsx\`)으로 사용한다.
 
-### Structure
-- Style: Outlined, Rounded, Sharp
-- Variable Font Axes: Fill, Weight, Grade, Optical Size
-
-### Usage
-Use the Controls panel to change icon properties in real-time.
+- 선 굵기 기본값은 **1px**이고 \`non-scaling-stroke\`로 크기와 무관하게 항상 같은 굵기로 그려진다.
+- \`fontSize\`(small / medium / large / inherit), \`color\`, \`sx\`는 MUI 아이콘과 동일하게 쓴다.
+- 활성 상태(좋아요, 별점 등)는 \`isFilled\`로 면을 채운다.
+- MUI 내장 아이콘(Select 화살표, Chip 삭제, Checkbox, Alert)은 테마 defaultProps에서 lucide로 교체되어 있다.
         `,
-			},
-		},
-	},
-	argTypes: {
-		name: {
-			control: "text",
-			description: "Icon name (Material Symbols name)",
-			table: {
-				type: { summary: "string" },
-				defaultValue: { summary: "favorite" },
-			},
-		},
-		variant: {
-			control: "select",
-			options: ["outlined", "rounded", "sharp"],
-			description: "Icon style",
-			table: {
-				type: { summary: "string" },
-				defaultValue: { summary: "outlined" },
-			},
-		},
-		size: {
-			control: { type: "range", min: 16, max: 96, step: 4 },
-			description: "Icon size (px)",
-			table: {
-				type: { summary: "number" },
-				defaultValue: { summary: 24 },
-			},
-		},
-		fill: {
-			control: "boolean",
-			description: "Fill state (Fill axis)",
-			table: {
-				type: { summary: "boolean" },
-				defaultValue: { summary: false },
-			},
-		},
-		weight: {
-			control: { type: "range", min: 100, max: 700, step: 100 },
-			description: "Stroke weight (Weight axis)",
-			table: {
-				type: { summary: "number" },
-				defaultValue: { summary: 400 },
-			},
-		},
-		color: {
-			control: "color",
-			description: "Icon color",
-			table: {
-				type: { summary: "string" },
-				defaultValue: { summary: "inherit" },
-			},
-		},
-	},
+      },
+    },
+  },
+  argTypes: {
+    icon: {
+      control: 'select',
+      options: Object.keys(ICONS),
+      mapping: ICONS,
+      description: 'lucide-react 아이콘 컴포넌트',
+    },
+    fontSize: {
+      control: 'select',
+      options: ['inherit', 'small', 'medium', 'large'],
+      description: '크기 (small 20px / medium 24px / large 35px)',
+    },
+    strokeWidth: {
+      control: { type: 'range', min: 0.5, max: 3, step: 0.25 },
+      description: '선 굵기(px, 크기와 무관하게 고정)',
+      table: { defaultValue: { summary: 1 } },
+    },
+    isFilled: { control: 'boolean', description: '면 채움 여부' },
+    sx: { control: 'object', description: '추가 스타일' },
+  },
 };
 
-/** Default - Interactive Controls */
 export const Default = {
-	args: {
-		name: "favorite",
-		variant: "outlined",
-		size: 48,
-		fill: false,
-		weight: 400,
-		color: "#0000FF",
-	},
+  args: {
+    icon: 'Heart',
+    fontSize: 'large',
+    strokeWidth: 1,
+    isFilled: false,
+  },
+  render: ({ icon, ...args }) => <LucideIcon icon={ ICONS[icon] || icon } { ...args } />,
 };
 
-/** Fill Usage - Toggle state pattern */
-export const FillUsage = {
-	parameters: {
-		layout: "padded",
-	},
-	render: () => {
-		const fillExamples = [
-			{ icon: "favorite", label: "Like", activeColor: "#e91e63" },
-			{ icon: "bookmark", label: "Bookmark", activeColor: "#1976d2" },
-			{ icon: "star", label: "Favorite", activeColor: "#ffc107" },
-			{ icon: "thumb_up", label: "Recommend", activeColor: "#0000FF" },
-			{ icon: "check_circle", label: "Complete", activeColor: "#2e7d32" },
-			{ icon: "visibility", label: "Visible", activeColor: "#263238" },
-		];
+export const Gallery = {
+  parameters: { layout: 'padded' },
+  render: () => (
+    <>
+      <DocumentTitle
+        title="Icons"
+        status="Available"
+        note="Lucide icon set (1px stroke)"
+        brandName="Lumenstate"
+        systemName="Design System"
+        version="1.0"
+      />
+      <PageContainer>
+        <SectionTitle title="아이콘 목록" description="프로젝트에서 사용하는 lucide 아이콘 (전체 목록은 lucide.dev)" />
+        <Box sx={ { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 2, mb: 6 } }>
+          { Object.entries(ICONS).map(([name, icon]) => (
+            <Box key={ name } sx={ { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, py: 2 } }>
+              <LucideIcon icon={ icon } fontSize="large" />
+              <Typography variant="caption" color="text.secondary" sx={ { fontFamily: 'monospace' } }>{ name }</Typography>
+            </Box>
+          )) }
+        </Box>
 
-		return (
-			<>
-				<DocumentTitle
-					title="Icon Fill Usage"
-					status="Available"
-					note="Fill property usage patterns"
-					brandName="Design System"
-					systemName="Starter Kit"
-					version="1.0"
-				/>
-				<PageContainer>
-					<Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-						Fill Usage
-					</Typography>
-					<Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-						Express toggle states using the Fill property.
-					</Typography>
+        <SectionTitle title="크기" description="fontSize 값에 따른 아이콘 크기. 선 굵기는 모두 1px" />
+        <TableContainer sx={ { mb: 6 } }>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell sx={ { fontWeight: 600 } }>fontSize</TableCell>
+                <TableCell sx={ { fontWeight: 600 } }>크기</TableCell>
+                <TableCell sx={ { fontWeight: 600 } }>예시</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              { [['small', '20px'], ['medium (기본)', '24px'], ['large', '35px']].map(([key, px]) => (
+                <TableRow key={ key }>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>{ key }</TableCell>
+                  <TableCell>{ px }</TableCell>
+                  <TableCell>
+                    <LucideIcon icon={ Search } fontSize={ key.split(' ')[0] } />
+                  </TableCell>
+                </TableRow>
+              )) }
+            </TableBody>
+          </Table>
+        </TableContainer>
 
-					<SectionTitle
-						title="Toggle Pattern"
-						description="Selected/Unselected state expression"
-					/>
+        <SectionTitle title="면 채움 (isFilled)" description="활성 상태 표현. 선 아이콘이 기본이며 필요한 경우에만 채운다" />
+        <Box sx={ { display: 'flex', gap: 3, mb: 6 } }>
+          <LucideIcon icon={ Heart } fontSize="large" />
+          <LucideIcon icon={ Heart } fontSize="large" isFilled sx={ { color: 'error.main' } } />
+          <LucideIcon icon={ Star } fontSize="large" />
+          <LucideIcon icon={ Star } fontSize="large" isFilled sx={ { color: 'warning.main' } } />
+        </Box>
 
-					<TableContainer sx={{ mb: 4 }}>
-						<Table>
-							<TableHead>
-								<TableRow>
-									<TableCell sx={{ fontWeight: 600, width: "20%" }}>
-										Icon
-									</TableCell>
-									<TableCell sx={{ fontWeight: 600, width: "20%" }}>
-										Usage
-									</TableCell>
-									<TableCell sx={{ fontWeight: 600, width: "30%" }}>
-										Off (Fill: 0)
-									</TableCell>
-									<TableCell sx={{ fontWeight: 600 }}>On (Fill: 1)</TableCell>
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								{fillExamples.map((item) => (
-									<TableRow key={item.icon}>
-										<TableCell sx={{ fontFamily: "monospace", fontSize: 13 }}>
-											{item.icon}
-										</TableCell>
-										<TableCell>{item.label}</TableCell>
-										<TableCell>
-											<Box
-												sx={{ display: "flex", alignItems: "center", gap: 1 }}
-											>
-												<MaterialSymbol
-													name={item.icon}
-													size={28}
-													fill={false}
-												/>
-												<Typography variant="caption" color="text.secondary">
-													Unselected
-												</Typography>
-											</Box>
-										</TableCell>
-										<TableCell>
-											<Box
-												sx={{ display: "flex", alignItems: "center", gap: 1 }}
-											>
-												<MaterialSymbol
-													name={item.icon}
-													size={28}
-													fill
-													color={item.activeColor}
-												/>
-												<Typography variant="caption" color="text.secondary">
-													Selected
-												</Typography>
-											</Box>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
+        <SectionTitle title="사용 예시" />
+        <Box
+          component="pre"
+          sx={ { backgroundColor: 'grey.100', p: 2, fontSize: 12, fontFamily: 'monospace', overflow: 'auto', mb: 6 } }
+        >
+{`import { Search } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
-					<SectionTitle title="Code Example" />
+<LucideIcon icon={ Search } fontSize="small" />
+<LucideIcon icon={ Heart } isFilled sx={ { color: 'error.main' } } />
+<Button startIcon={ <LucideIcon icon={ Plus } /> }>추가</Button>`}
+        </Box>
 
-					<Box
-						component="pre"
-						sx={{
-							backgroundColor: "grey.100",
-							p: 3,
-							fontSize: 12,
-							fontFamily: "monospace",
-							overflow: "auto",
-						}}
-					>
-						{`// React state toggle
-const [isLiked, setIsLiked] = useState(false);
-
-<span
-  className="material-symbols-outlined"
-  style={{
-    fontVariationSettings: \`'FILL' \${isLiked ? 1 : 0}\`,
-    color: isLiked ? '#e91e63' : 'inherit',
-    cursor: 'pointer'
-  }}
-  onClick={() => setIsLiked(!isLiked)}
->
-  favorite
-</span>`}
-					</Box>
-				</PageContainer>
-			</>
-		);
-	},
+        <SectionTitle title="Vibe Coding Prompt" description="AI 코딩 도구에서 활용할 수 있는 프롬프트 예시" />
+        <Box
+          component="pre"
+          sx={ { backgroundColor: 'grey.900', color: 'grey.100', p: 2, fontSize: 12, fontFamily: 'monospace', overflow: 'auto' } }
+        >
+{`"검색 입력 오른쪽에 lucide의 Search 아이콘을 LucideIcon 래퍼로 넣어줘.
+크기는 fontSize="small", 색은 text.secondary로 하고 선 굵기는 기본 1px을 유지해줘."`}
+        </Box>
+      </PageContainer>
+    </>
+  ),
 };

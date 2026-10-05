@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Indicator } from '../../common/ui/Indicator';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * ImageCarousel 컴포넌트
@@ -315,7 +315,7 @@ export function ImageCarousel({
               '&:disabled': { opacity: 0.3 },
             } }
           >
-            <ChevronLeftIcon />
+            <LucideIcon icon={ ChevronLeft } />
           </IconButton>
           <IconButton
             onClick={ goToNext }
@@ -332,7 +332,7 @@ export function ImageCarousel({
               '&:disabled': { opacity: 0.3 },
             } }
           >
-            <ChevronRightIcon />
+            <LucideIcon icon={ ChevronRight } />
           </IconButton>
         </>
       ) }

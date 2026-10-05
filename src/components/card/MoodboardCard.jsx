@@ -2,11 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import CollectionsIcon from '@mui/icons-material/Collections';
 import { CustomCard } from './CustomCard';
 import { ImageTransition } from '../media/ImageTransition';
+import { Images, Pencil, Trash2 } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * MoodboardCard 컴포넌트
@@ -142,7 +141,7 @@ export function MoodboardCard({
             color: 'grey.400',
           }}
         >
-          <CollectionsIcon sx={{ fontSize: 48, mb: 1 }} />
+          <LucideIcon icon={ Images } sx={{ fontSize: 48, mb: 1 }} />
           <Typography variant="caption" color="inherit">
             No images yet
           </Typography>
@@ -253,10 +252,10 @@ export function MoodboardCard({
             sx={{
               bgcolor: 'background.paper',
               boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-              '&:hover': { bgcolor: 'white' },
+              '&:hover': { bgcolor: 'primary.main', color: 'primary.contrastText' },
             }}
           >
-            <EditOutlinedIcon fontSize="small" />
+            <LucideIcon icon={ Pencil } fontSize="small" />
           </IconButton>
         )}
         {onDelete && (
@@ -275,7 +274,7 @@ export function MoodboardCard({
               },
             }}
           >
-            <DeleteOutlineIcon fontSize="small" />
+            <LucideIcon icon={ Trash2 } fontSize="small" />
           </IconButton>
         )}
       </Box>

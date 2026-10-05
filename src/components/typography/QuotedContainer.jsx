@@ -1,29 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { keyframes } from '@mui/material/styles';
+import { Quote } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
- * Material Symbols 아이콘 컴포넌트
- * 프로젝트 디자인 시스템의 Icons.stories.jsx 패턴 사용
+ * 따옴표 글리프 (lucide Quote, 면 채움)
+ * fontSize 기준으로 크기가 정해지며 텍스트 흐름 안에서 inline-flex로 배치된다
  */
-function MaterialSymbol({ name, size = 24, fill = false, weight = 400, color = 'inherit', sx = {} }) {
+function QuoteGlyph({ size = 24, color = 'inherit', sx = {} }) {
   return (
-    <Box
-      component="span"
-      className="material-symbols-rounded"
+    <LucideIcon
+      icon={Quote}
+      isFilled
       sx={{
         fontSize: size,
         color,
-        fontVariationSettings: `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}`,
-        lineHeight: 1,
         display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         ...sx,
       }}
-    >
-      {name}
-    </Box>
+    />
   );
 }
 
@@ -147,10 +143,8 @@ export function QuotedContainer({
           }}
         >
           {/* 여는 따옴표 - 첫 글자 좌상단 */}
-          <MaterialSymbol
-            name="format_quote"
+          <QuoteGlyph
             size={iconSize}
-            fill
             color={quoteColor}
             sx={{
               ...baseIconSx,
@@ -162,10 +156,8 @@ export function QuotedContainer({
           />
           {children}
           {/* 닫는 따옴표 - 마지막 글자 우하단 */}
-          <MaterialSymbol
-            name="format_quote"
+          <QuoteGlyph
             size={iconSize}
-            fill
             color={quoteColor}
             sx={{
               ...baseIconSx,
@@ -221,10 +213,8 @@ export function QuotedContainer({
           }}
         >
           {/* 여는 따옴표 - 첫 글자 좌상단 */}
-          <MaterialSymbol
-            name="format_quote"
+          <QuoteGlyph
             size="0.8em"
-            fill
             color={quoteColor}
             sx={{
               ...baseIconSx,
@@ -235,10 +225,8 @@ export function QuotedContainer({
           />
           {children}
           {/* 닫는 따옴표 - 마지막 글자 우하단 */}
-          <MaterialSymbol
-            name="format_quote"
+          <QuoteGlyph
             size="0.8em"
-            fill
             color={quoteColor}
             sx={{
               ...baseIconSx,
@@ -284,10 +272,8 @@ export function QuotedContainer({
         {...props}
       >
         {/* 배경 인용 부호 아이콘 */}
-        <MaterialSymbol
-          name="format_quote"
+        <QuoteGlyph
           size={iconSize * 4}
-          fill
           color={quoteColor}
           sx={{
             position: 'absolute',

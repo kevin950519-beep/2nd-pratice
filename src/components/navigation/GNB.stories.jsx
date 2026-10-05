@@ -1,12 +1,11 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { GNB } from './GNB';
 import { NavMenu } from './NavMenu';
 import { DocumentTitle, PageContainer } from '../storybookDocumentation';
 import { SectionContainer } from '../container/SectionContainer';
+import { Images, LayoutDashboard, Settings } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 export default {
   title: 'Component/10. Navigation/GNB',
@@ -18,9 +17,9 @@ export default {
 };
 
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-  { id: 'gallery', label: 'Gallery', icon: <PhotoLibraryIcon /> },
-  { id: 'settings', label: 'Settings', icon: <SettingsIcon /> },
+  { id: 'dashboard', label: 'Dashboard', icon: <LucideIcon icon={ LayoutDashboard } /> },
+  { id: 'gallery', label: 'Gallery', icon: <LucideIcon icon={ Images } /> },
+  { id: 'settings', label: 'Settings', icon: <LucideIcon icon={ Settings } /> },
 ];
 
 const Logo = () => (

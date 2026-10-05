@@ -18,6 +18,13 @@ sx={{ backgroundColor: 'secondary.main' }}
 sx={{ color: 'grey.100' }}
 ```
 
+#### 시간대 테마 (Light/Dark) 호환
+사이트는 시간대(12/16/20/24시)에 따라 배경(4단계)과 UI 색(18시 기준 라이트/다크)이 바뀐다. 모든 UI 색은 theme 토큰으로만 지정한다.
+- UI 잉크/종이: `text.primary`, `primary.main`, `primary.contrastText`, `background.*`, `divider`, `action.*` 사용
+- `common.black` / `common.white`, 헥스(`#000`), `rgba(0,0,0,…)`로 UI 색을 지정하지 않는다 (다크에서 반전되지 않음)
+- 예외: 이미지 위 오버레이·스크림처럼 배경 테마와 무관해야 하는 고정 색 (CustomCard 하단 그라디언트, FileDropzone, ImageCarousel 버튼, Indicator 등)
+- 전역 시간은 `useTimeline()` (`components/dynamic-color`)로 구독한다
+
 #### 타이포그래피
 ```jsx
 // theme.typography 사용
@@ -32,7 +39,8 @@ sx={{ p: 2, m: 3, gap: 1 }}
 ```
 
 #### 아이콘
-- @mui/icons-material, pixelarticons 아이콘 우선 사용
+- **lucide-react** 아이콘을 `common/ui/LucideIcon` 래퍼로 사용 (선 굵기 기본 1px, `fontSize`/`sx`는 MUI 아이콘과 동일). `@mui/icons-material`은 신규 사용 금지
+- 활성 상태는 `isFilled`, MUI 내장 아이콘(Select/Chip/Checkbox/Alert)은 테마 defaultProps에서 lucide로 교체됨
 - `src/stories/style/Icons.stories.jsx` 참고
 
 ## 스타일링 규칙

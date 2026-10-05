@@ -57,7 +57,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - FileDropzone: 파일 드래그&드롭 영역 (`components/input/FileDropzone.jsx`)
 - SearchBar: 검색 입력 바 (`components/input/SearchBar.jsx`)
 - TagInput: 태그 입력 필드 (`components/input/TagInput.jsx`)
-- TimelineButtons: 시간대 버튼. 12/16/20/24시 4개 ToggleButton으로 time(0~1) 선택, 가까운 구간 활성 표시 (`components/input/TimelineButtons.jsx`)
+- FloatingTimelineControl: 화면 중앙 하단 고정 시간대 컨트롤. 12/16/20/24시 버튼으로 전역 time 조작, 글래스모피즘 컨테이너(반투명+backdrop blur), 시간대 테마 색 연동 (`components/input/FloatingTimelineControl.jsx`)
 - Button: MUI Button 컴포넌트 [MUI]
 - Checkbox: MUI Checkbox 컴포넌트 [MUI]
 - Select: MUI Select 컴포넌트 [MUI]
@@ -111,6 +111,8 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 ## 15. DynamicColor (Interactive) — 동적 색상 변화
 
 - GradientOverlay: Three.js WebGL 스크롤 반응형 그라데이션 배경. Simplex Noise + 필름 그레인 (`components/dynamic-color/GradientOverlay.jsx`)
+- TimelineProvider / useTimeline: 전역 시간 값(0~1) 상태 제공·구독. 휘발, 기본값 0 (`components/dynamic-color/TimelineProvider.jsx`, `useTimeline.js`)
+- TimeThemeProvider: 전역 시간에 따라 4개 시간대 테마 적용. 배경 4단계(palette.timeline) + UI 색 18시 기준 라이트/다크 즉시 전환, 전환 시 0.6초 색 트랜지션, html data-theme/color-scheme 반영 (`components/dynamic-color/TimeThemeProvider.jsx`)
 - GradientOverlayDynamic: Next.js 동적 import 래퍼 (ssr: false). 페이지에서 사용 시 이것을 import (`components/dynamic-color/GradientOverlayDynamic.jsx`)
 
 ---
@@ -118,9 +120,10 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 ## Common (유틸리티)
 
 - Indicator: 범용 인디케이터 (`common/ui/Indicator.jsx`)
+- LucideIcon: lucide-react 아이콘 래퍼. MUI SvgIcon 기반(fontSize/color/sx 동일), 선 1px 고정(non-scaling-stroke), isFilled 지원 (`common/ui/LucideIcon.jsx`)
 - Placeholder: 스토리 예제용 FPO 플레이스홀더 시스템. Box/Image/Media/Text/Line/Paragraph/Card 서브컴포넌트 (`common/ui/Placeholder.jsx`)
 - FilterBar: 필터 바 (`components/templates/FilterBar.jsx`)
 - ProductGrid: 제품 그리드. data/products.js 전체를 ProductCard로 반응형 나열(2/3/4/5열, PC 5열), time 공유. 필터 변경 시 순차 전환(fade-out → 가로 이동 → 세로 이동 → fade-in) (`components/templates/ProductGrid.jsx`)
 - ProductFilter: 제품 type별 필터. CategoryTab vertical 사용, type별 제품 수 표시 (`components/templates/ProductFilter.jsx`)
-- ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링, onTimeChange 전달 시 시간대 버튼 표시 (`components/templates/ProductShowcase.jsx`)
+- ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링 (`components/templates/ProductShowcase.jsx`)
 - useFilterTransition: 목록 필터 전환 훅. FLIP 직접 구현, exit → 가로 → 세로 → enter 순차, 사선·겹침·시차 없음 (`components/templates/useFilterTransition.js`)

@@ -3,7 +3,7 @@
  *
  * "빛은 공간의 상태다."
  *
- * 밤(8pm-12am) 시간대를 위한 다크 테마.
+ * 밤(8pm-12am) 시간대를 위한 다크 테마. (시간대별 배경은 timelineThemes.js 참조)
  * 라이트 테마와 동일한 브랜드 4색 기반.
  *
  * ## 다크 모드 컬러 토큰
@@ -16,6 +16,8 @@
 import { createTheme } from '@mui/material/styles';
 import {
   BRAND_COLORS,
+  palette as lightPalette,
+  buildComponents,
   typography,
   spacing,
   shape,
@@ -135,13 +137,8 @@ const darkPalette = {
   // Lumenstate 커스텀 토큰
   brand: BRAND_COLORS,
 
-  // 시간대별 배경색 토큰
-  timeline: {
-    noon: '#E8E5E1',
-    afternoon: '#928F8D',
-    evening: '#383735',
-    midnight: '#12100E',
-  },
+  // 시간대별 배경색 토큰 (테마와 무관한 단일 눈금: 라이트 팔레트와 동일)
+  timeline: lightPalette.timeline,
 
   contrastThreshold: 3,
   tonalOffset: 0.2,
@@ -179,58 +176,9 @@ const darkShadows = [
 ];
 
 // ============================================================
-// Dark Mode Components Override
+// Dark Mode Components Override (라이트와 동일한 팩토리, 다크 팔레트 참조)
 // ============================================================
-const darkComponents = {
-  MuiCssBaseline: {
-    styleOverrides: {
-      body: {
-        scrollbarWidth: 'thin',
-        backgroundColor: BRAND_COLORS.warmBlack,
-        color: BRAND_COLORS.warmWhite,
-      },
-    },
-  },
-  MuiButton: {
-    styleOverrides: {
-      root: {
-        borderRadius: 0,
-        textTransform: 'none',
-      },
-    },
-  },
-  MuiPaper: {
-    styleOverrides: {
-      root: {
-        borderRadius: 0,
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  MuiCard: {
-    styleOverrides: {
-      root: {
-        borderRadius: 0,
-      },
-    },
-  },
-  MuiChip: {
-    styleOverrides: {
-      root: {
-        borderRadius: 0,
-      },
-    },
-  },
-  MuiTextField: {
-    styleOverrides: {
-      root: {
-        '& .MuiOutlinedInput-root': {
-          borderRadius: 0,
-        },
-      },
-    },
-  },
-};
+const darkComponents = buildComponents(darkPalette);
 
 // ============================================================
 // Dark Theme 생성

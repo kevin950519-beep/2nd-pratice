@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
@@ -37,6 +38,7 @@ function SlidingHighlightMenu({
   direction = 'horizontal',
   sx,
 }) {
+  const theme = useTheme();
   const [hoveredId, setHoveredId] = useState(null);
 
   const isVertical = direction === 'vertical';
@@ -96,12 +98,12 @@ function SlidingHighlightMenu({
                     ? { right: -1, top: 0, width: 2, height: '100%' }
                     : { bottom: -1, left: 0, width: '100%', height: 2 }
                   ),
-                  backgroundColor: '#000',
+                  backgroundColor: theme.palette.primary.main,
                 }
                 : {
                   position: 'absolute',
                   inset: 0,
-                  backgroundColor: 'rgba(0, 0, 0, 0.06)',
+                  backgroundColor: theme.palette.action.selected,
                   borderRadius: 4,
                 }
               }

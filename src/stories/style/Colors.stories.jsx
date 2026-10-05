@@ -488,6 +488,14 @@ export const SemanticTokens = {
               <SingleColorBlock name="paper" color={ theme.palette.background.paper } hasBorder />
             </Box>
           </Box>
+
+          <SectionTitle title="시간대 배경 (Timeline)" description="12 / 16 / 20 / 24시 4단계. 글자·UI 색은 18시 기준 라이트(12·16시) ↔ 다크(20·24시)로 즉시 전환" />
+          <Box sx={ { display: 'flex', flexWrap: 'wrap', gap: 1, mb: 6 } }>
+            <SingleColorBlock name="noon (12시)" color={ theme.palette.timeline.noon } hasBorder />
+            <SingleColorBlock name="afternoon (16시)" color={ theme.palette.timeline.afternoon } hasBorder />
+            <SingleColorBlock name="evening (20시)" color={ theme.palette.timeline.evening } hasBorder />
+            <SingleColorBlock name="midnight (24시)" color={ theme.palette.timeline.midnight } hasBorder />
+          </Box>
         </PageContainer>
       </>
     );

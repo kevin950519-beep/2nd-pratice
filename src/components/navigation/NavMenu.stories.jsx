@@ -2,20 +2,18 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import WorkIcon from '@mui/icons-material/Work';
-import MailIcon from '@mui/icons-material/Mail';
 import { NavMenu } from './NavMenu';
 import { DocumentTitle, PageContainer } from '../storybookDocumentation';
 import { SectionContainer } from '../container/SectionContainer';
+import { Briefcase, House, Info, Mail } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 // Navigation Items
 const navItems = [
-  { id: 'home', label: 'Home', icon: <HomeIcon /> },
-  { id: 'about', label: 'About', icon: <InfoIcon /> },
-  { id: 'work', label: 'Work', icon: <WorkIcon /> },
-  { id: 'contact', label: 'Contact', icon: <MailIcon /> },
+  { id: 'home', label: 'Home', icon: <LucideIcon icon={ House } /> },
+  { id: 'about', label: 'About', icon: <LucideIcon icon={ Info } /> },
+  { id: 'work', label: 'Work', icon: <LucideIcon icon={ Briefcase } /> },
+  { id: 'contact', label: 'Contact', icon: <LucideIcon icon={ Mail } /> },
 ];
 
 /**
@@ -97,7 +95,7 @@ function VerticalDemo() {
 
   const items = [
     ...navItems,
-    { id: 'disabled', label: 'Disabled Item', icon: <MailIcon />, disabled: true },
+    { id: 'disabled', label: 'Disabled Item', icon: <LucideIcon icon={ Mail } />, disabled: true },
   ];
 
   return (

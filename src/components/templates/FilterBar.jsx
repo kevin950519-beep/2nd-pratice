@@ -8,12 +8,9 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import SortIcon from '@mui/icons-material/Sort';
-import GridViewIcon from '@mui/icons-material/GridView';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import CloseIcon from '@mui/icons-material/Close';
 import { SearchBar } from '../input/SearchBar';
+import { ArrowUpDown, LayoutGrid, List, ListFilter, X } from 'lucide-react';
+import { LucideIcon } from '../../common/ui/LucideIcon';
 
 /**
  * FilterBar 템플릿
@@ -147,7 +144,7 @@ export function FilterBar({
             <Button
               variant="outlined"
               size="small"
-              startIcon={<SortIcon />}
+              startIcon={<LucideIcon icon={ ArrowUpDown } />}
               onClick={handleSortOpen}
               sx={{
                 textTransform: 'none',
@@ -195,7 +192,7 @@ export function FilterBar({
                 color: viewMode === 'grid' ? 'primary.main' : 'text.secondary',
               }}
             >
-              <GridViewIcon fontSize="small" />
+              <LucideIcon icon={ LayoutGrid } fontSize="small" />
             </IconButton>
             <IconButton
               size="small"
@@ -206,7 +203,7 @@ export function FilterBar({
                 color: viewMode === 'list' ? 'primary.main' : 'text.secondary',
               }}
             >
-              <ViewListIcon fontSize="small" />
+              <LucideIcon icon={ List } fontSize="small" />
             </IconButton>
           </Box>
         )}
@@ -233,7 +230,7 @@ export function FilterBar({
             }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <FilterListIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
+              <LucideIcon icon={ ListFilter } sx={{ fontSize: 18, color: 'text.secondary' }} />
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 Filter by Tags
               </Typography>
@@ -296,7 +293,7 @@ export function FilterBar({
                 label={`#${tag}`}
                 size="small"
                 onDelete={() => handleTagClick(tag)}
-                deleteIcon={<CloseIcon sx={{ fontSize: 14 }} />}
+                deleteIcon={<LucideIcon icon={ X } sx={{ fontSize: 14 }} />}
                 sx={{
                   fontWeight: 500,
                   bgcolor: 'primary.lighter',
@@ -315,7 +312,7 @@ export function FilterBar({
                 label={`"${searchValue}"`}
                 size="small"
                 onDelete={() => onSearchChange('')}
-                deleteIcon={<CloseIcon sx={{ fontSize: 14 }} />}
+                deleteIcon={<LucideIcon icon={ X } sx={{ fontSize: 14 }} />}
                 sx={{
                   fontWeight: 500,
                   bgcolor: 'grey.200',

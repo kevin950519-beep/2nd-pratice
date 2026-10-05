@@ -1,25 +1,21 @@
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-import { defaultTheme } from '../src/styles/themes';
-
-// Google Fonts 로드 (Material Symbols + 기본 폰트)
-const googleFonts = [
-  // Material Symbols
-  'Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
-  'Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
-  'Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
-];
-
-googleFonts.forEach((font) => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `https://fonts.googleapis.com/css2?family=${font}&display=swap`;
-  document.head.appendChild(link);
-});
+import { TimelineProvider, TimeThemeProvider } from '../src/components/dynamic-color';
+import { SyncGlobalTime } from './SyncGlobalTime';
+import { TIMELINE_STOPS } from '../src/utils/timeline';
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {
+  globalTypes: {
+    time: {
+      description: '시간대 (전역 테마)',
+      toolbar: {
+        title: 'Time',
+        icon: 'timealarm',
+        items: TIMELINE_STOPS.map(({ time, label, name }) => ({ value: time, title: `${label} ${name}` })),
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: { time: 0 },
   parameters: {
     controls: {
       matchers: {
@@ -60,13 +56,16 @@ const preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
-        <div style={{ width: '100%', paddingTop: '40px' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
+    (Story, { globals }) => (
+      <TimelineProvider initialTime={ Number(globals.time) || 0 }>
+        <SyncGlobalTime time={ Number(globals.time) || 0 }>
+          <TimeThemeProvider>
+            <div style={{ width: '100%', paddingTop: '40px' }}>
+              <Story />
+            </div>
+          </TimeThemeProvider>
+        </SyncGlobalTime>
+      </TimelineProvider>
     ),
   ],
 };
