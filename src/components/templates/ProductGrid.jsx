@@ -22,7 +22,7 @@ import defaultProducts from '../../data/products';
  * @param {boolean} isTransitionEnabled - 필터 전환 애니메이션 사용 여부 [Optional, 기본값: true]
  * @param {object} transition - 전환 시간 { exit, moveX, moveY, enter, blur } 초/px [Optional]
  * @param {number} spacing - 카드 간격 (theme.spacing) [Optional, 기본값: 3]
- * @param {function} onProductClick - 카드 클릭 시 product를 인자로 호출 [Optional]
+ * @param {function} onProductClick - 카드 클릭 시 (product, event)로 호출. event로 카드의 이미지 좌표를 잴 수 있다 [Optional]
  * @param {object} sx - 추가 스타일 [Optional]
  *
  * Example usage:
@@ -56,7 +56,8 @@ export function ProductGrid({
             lux={ product.lux }
             kelvin={ product.kelvin }
             time={ time }
-            onClick={ onProductClick ? () => onProductClick(product) : undefined }
+            sharedKey={ product.id }
+            onClick={ onProductClick ? (event) => onProductClick(product, event) : undefined }
           />
         </Grid>
       )) }

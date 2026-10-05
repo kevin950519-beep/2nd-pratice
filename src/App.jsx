@@ -1,20 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { TimelineProvider, TimeThemeProvider } from './components/dynamic-color';
-import { FloatingTimelineControl } from './components/input/FloatingTimelineControl';
-import { AppShell } from './components/layout/AppShell';
+import { CartProvider } from './components/commerce';
+import { SharedElementProvider } from './components/motion';
+import { AppRoutes } from './pages/AppRoutes';
 
 function App() {
   return (
     <TimelineProvider>
       <TimeThemeProvider>
-        <BrowserRouter>
-          <AppShell>
-            <Routes>
-              <Route path="/" element={<div />} />
-            </Routes>
-          </AppShell>
-        </BrowserRouter>
-        <FloatingTimelineControl />
+        <CartProvider>
+          <BrowserRouter>
+            <SharedElementProvider>
+              <AppRoutes />
+            </SharedElementProvider>
+          </BrowserRouter>
+        </CartProvider>
       </TimeThemeProvider>
     </TimelineProvider>
   );

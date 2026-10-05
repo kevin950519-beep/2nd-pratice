@@ -23,6 +23,7 @@ import { TimeBlendImage } from '../media/TimeBlendImage';
  * @param {number} lux - 조도(lx) [Optional]
  * @param {number} kelvin - 색온도(K) [Optional]
  * @param {number} time - 시간 값 0(Day) ~ 1(Night) [Optional, 기본값: 0]
+ * @param {string|number} sharedKey - Shared Element 전환 키 (제품 id). 이미지 영역에 data-shared-key로 노출 [Optional]
  * @param {string} mediaRatio - 이미지 비율 (에셋 원본 규격 1792x2400) [Optional, 기본값: '1792/2400']
  * @param {function} onClick - 카드 클릭 핸들러 [Optional]
  * @param {object} sx - 추가 스타일 [Optional]
@@ -46,6 +47,7 @@ export function ProductCard({
   kelvin,
   time = 0,
   mediaRatio = '1792/2400',
+  sharedKey,
   onClick,
   sx,
   ...props
@@ -57,6 +59,7 @@ export function ProductCard({
       time={ time }
       ratio={ mediaRatio }
       fit="contain"
+      sharedKey={ sharedKey }
       sx={ { bgcolor: 'grey.100' } }
     />
   );

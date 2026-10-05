@@ -4,9 +4,10 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { Menu, X } from 'lucide-react';
 import { LucideIcon } from '../../common/ui/LucideIcon';
+import { CartButton } from '../commerce/CartButton';
 
 /**
  * GNB Context
@@ -39,6 +40,8 @@ export const useGNB = () => useContext(GNBContext);
  * @param {boolean} hasBorder - 헤더 하단 보더 [Optional, 기본값: true]
  * @param {boolean} isSticky - 헤더 고정 [Optional, 기본값: true]
  * @param {boolean} isTransparent - 헤더 투명 배경 [Optional, 기본값: false]
+ * @param {boolean} isTranslucent - 반투명 배경 + 블러 (뒤 콘텐츠가 은은하게 비침) [Optional, 기본값: false]
+ * @param {boolean} hasCart - 장바구니 버튼(수량 배지) 표시. CartProvider 필요 [Optional, 기본값: false]
  * @param {string} logoHref - 로고 클릭 시 이동 경로 (설정 시 로고를 Link로 래핑) [Optional]
  * @param {object} sx - 추가 스타일 [Optional]
  *
@@ -61,6 +64,8 @@ const GNB = forwardRef(function GNB({
   hasBorder = true,
   isSticky = true,
   isTransparent = false,
+  isTranslucent = false,
+  hasCart = false,
   logoHref,
   sx,
   ...props
@@ -86,10 +91,12 @@ const GNB = forwardRef(function GNB({
     justifyContent: 'space-between',
     height,
     px: { xs: 2, sm: 3, md: 4 },
-    backgroundColor: isTransparent ? 'transparent' : 'background.paper',
+    backgroundColor: isTransparent
+      ? 'transparent'
+      : (isTranslucent ? alpha(theme.palette.background.paper, 0.72) : 'background.paper'),
     borderBottom: hasBorder ? '1px solid' : 'none',
     borderColor: 'divider',
-    backdropFilter: isTransparent ? 'blur(12px)' : 'none',
+    backdropFilter: isTransparent || isTranslucent ? 'blur(12px)' : 'none',
     ...sx,
   };
 
@@ -181,6 +188,9 @@ const GNB = forwardRef(function GNB({
 
           {/* Desktop: Show navContent */}
           {!isMobile && navContent}
+
+          {/* Cart (모바일에서도 햄버거 옆에 항상 노출) */}
+          {hasCart && <CartButton />}
 
           {/* Mobile: Hamburger menu */}
           {isMobile && navContent && (

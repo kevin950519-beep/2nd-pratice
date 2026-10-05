@@ -23,7 +23,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 
 ## 2. Container — 시각적 경계와 그룹핑
 
-- SectionContainer: 페이지 섹션 컨테이너. MUI Container 기반 (`components/container/SectionContainer.jsx`)
+- SectionContainer: 페이지 섹션 컨테이너. `maxWidth` 지정 시 가운데 정렬된 좁은 레이아웃 (`components/container/SectionContainer.jsx`)
 - CarouselContainer: 캐로셀 컨테이너 (`components/container/CarouselContainer.jsx`)
 - RatioContainer: 비율 기반 컨테이너 (`components/container/RatioContainer.jsx`)
 
@@ -74,7 +74,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - LineGrid: 그리드 아이템 사이 1px 라인 자동 삽입 (`components/layout/LineGrid.jsx`)
 - FullPageContainer: 전체 페이지 컨테이너 (`components/layout/FullPageContainer.jsx`)
 - PageContainer: 반응형 페이지 컨테이너. PC maxWidth 고정, 모바일 100% (`components/layout/PageContainer.jsx`)
-- AppShell: 반응형 앱 셸. GNB + 메인 콘텐츠 영역 (`components/layout/AppShell.jsx`)
+- AppShell: 반응형 앱 셸. GNB + 메인 콘텐츠 영역 + footer 슬롯 (`components/layout/AppShell.jsx`)
 - StickyAsideCenterLayout: 대칭 3열 그리드. sticky aside + 페이지 정중앙 콘텐츠 + 빈 대칭 칼럼 (`components/layout/StickyAsideCenterLayout.jsx`)
 - Grid: MUI Grid 컴포넌트 [MUI]
 - Masonry: MUI Masonry 컴포넌트 [MUI]
@@ -87,6 +87,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 
 - GNB: 반응형 글로벌 네비게이션 바. 데스크탑 메뉴 / 모바일 Drawer (`components/navigation/GNB.jsx`)
 - NavMenu: 네비게이션 메뉴 (`components/navigation/NavMenu.jsx`)
+- Footer: 브랜드·태그라인 + 링크 + 카피라이트 푸터 (`components/navigation/Footer.jsx`)
 - SlidingHighlightMenu: 슬라이딩 하이라이트 메뉴. hover 시 layoutId 기반 인디케이터 이동, background/underline, horizontal/vertical (`components/navigation/SlidingHighlightMenu.jsx`)
 
 ## 11. KineticTypography (Interactive) — 텍스트 애니메이션 효과
@@ -101,7 +102,7 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 
 ## 12. Scroll (Interactive) — 스크롤 기반 효과
 
-- VideoScrubbing: 스크롤 기반 비디오 스크러빙 (`components/scroll/VideoScrubbing.jsx`)
+- VideoScrubbing: 스크롤 기반 비디오 스크러빙 (progress prop으로 외부 진행도 제어 가능) (`components/scroll/VideoScrubbing.jsx`)
 - ScrollScaleContainer: 뷰포트 노출 비율 연동 스케일 컨테이너. Framer Motion useScroll + useTransform (`components/scroll/ScrollScaleContainer.jsx`)
 
 ## 14. Motion (Interactive) — 스토리텔링 모션
@@ -119,6 +120,24 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 
 ---
 
+## Commerce — 장바구니·상품 구매 (`components/commerce/`)
+
+- CartProvider / useCart: 전역 장바구니 상태. 제품 id+옵션 조합이 아이템 키, localStorage 영속, 패널 열림 상태·clearCart 포함 (`components/commerce/CartProvider.jsx`, `useCart.js`)
+- CartDrawer: 우측 슬라이드 장바구니 패널. 수량·삭제·합계, 계속 구경하기/결제하기 (`components/commerce/CartDrawer.jsx`)
+- CartButton: 담긴 수량 배지가 있는 장바구니 열기 아이콘 버튼 (`components/commerce/CartButton.jsx`)
+- QuantityStepper: − / + 수량 스테퍼 (`components/commerce/QuantityStepper.jsx`)
+- ProductOptionSelector: 유리 마감·금속 마감·높이 언더라인 Select 3개 (드롭다운 메뉴는 불투명 배경) (`components/commerce/ProductOptionSelector.jsx`)
+- AddToCartAction: 금액 + 수량 스테퍼 + 담기 버튼 (`components/commerce/AddToCartAction.jsx`)
+- CheckoutSteps: 체크아웃 단계 표시 (`components/commerce/CheckoutSteps.jsx`)
+- CheckoutForm: 연락처/배송/할인 언더라인 폼 묶음, 값·검증은 부모 관리 (`components/commerce/CheckoutForm.jsx`)
+- OrderSummary: 주문 요약(아이템·소계·할인·배송비·합계) (`components/commerce/OrderSummary.jsx`)
+- ProductSpecTable: 제품 스펙 라벨/값 표 (`components/commerce/ProductSpecTable.jsx`)
+
+## Motion — 공간 전이 (`components/motion/`)
+
+- SharedElementProvider / useSharedElement: 목록 이미지 → 상세 히어로로 이어지는 공유 요소 전환 레이어. 정방향 begin→arrive, 역방향 capture→playReturn, 1.2초 smooth (`components/motion/SharedElementProvider.jsx`)
+- SharedElementTarget: 공유 요소 도착지. 마운트 시 좌표 보고, 전환 중 숨김 (`components/motion/SharedElementTarget.jsx`)
+
 ## Common (유틸리티)
 
 - Indicator: 범용 인디케이터 (`common/ui/Indicator.jsx`)
@@ -129,6 +148,10 @@ Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테�
 - ProductFilter: 제품 type별 필터. CategoryTab vertical 사용, type별 제품 수 표시 (`components/templates/ProductFilter.jsx`)
 - HeroSection: 랜딩 히어로. LineGrid 8:4(2:1)로 content.hero.moodboard 이미지 2컷(와이드+세로) 배치, 좌측 이미지 좌상단에 브랜드명·태그라인, TimeBlendImage로 전역 시간에 맞춰 낮밤 블렌딩, 모바일은 세로 스택 (`components/templates/HeroSection.jsx`)
 - BrandValueSection: 브랜드 3가치 섹션. content.brandValue.features를 BrandValueCard(ghost)로 LineGrid에 균등 배치, 모바일은 세로 스택 (`components/templates/BrandValueSection.jsx`)
-- TopSection: 랜딩 최상단 섹션. LineGrid 스택으로 HeroSection + BrandValueSection을 1px 라인으로 이어 붙임. heroProps/brandValueProps로 세부 설정 (`components/templates/TopSection.jsx`)
+- TopSection: 랜딩 최상단 섹션.  afterHero로 Hero 바로 아래에 콘텐츠 삽입 가능. LineGrid 스택으로 HeroSection + BrandValueSection을 1px 라인으로 이어 붙임. heroProps/brandValueProps로 세부 설정 (`components/templates/TopSection.jsx`)
+- LandingPage: 랜딩 페이지 전체. TopSection(Hero 아래 BrandElevationSection 포함) + 제품 섹션 제목 + ProductShowcase를 전역 시간 공유로 조합 (`components/templates/LandingPage.jsx`)
+- BrandElevationSection: 입면 영상 섹션. HorizontalScrollContainer + VideoScrubbing(progress 제어 모드)으로 set1→set2→set3 영상을 가로 스크롤 진행도에 맞춰 순차 스크러빙 (`components/templates/BrandElevationSection.jsx`)
+- ProductDetailPage: 제품 상세 템플릿 (SectionContainer maxWidth 1120으로 좁은 레이아웃). 좌측 대형 TimeBlendImage(SharedElementTarget) + 우측 sticky 정보(메타·옵션·담기) + 설명 아래 스펙 표, 담기 시 장바구니 패널 (`components/templates/ProductDetailPage.jsx`)
+- CheckoutPage: 격리된 체크아웃 템플릿. 로고 바+단계 표시, 좌 폼 / 우 스티키 주문 요약+결제하기, 검증 후 주문 접수 화면 전환·장바구니 비우기 (결제 연동 없는 목업, `/checkout`은 앱 셸 밖) (`components/templates/CheckoutPage.jsx`)
 - ProductShowcase: 제품 쇼케이스. StickyAsideCenterLayout 좌측 ProductFilter + 중앙 ProductGrid, type 필터링 (`components/templates/ProductShowcase.jsx`)
 - useFilterTransition: 목록 필터 전환 훅. FLIP 직접 구현, exit → 가로 → 세로 → enter 순차, 사선·겹침·시차 없음 (`components/templates/useFilterTransition.js`)

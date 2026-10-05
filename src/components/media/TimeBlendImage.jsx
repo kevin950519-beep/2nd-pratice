@@ -20,6 +20,7 @@ import Box from '@mui/material/Box';
  * @param {number} time - 시간 값 0(Day) ~ 1(Night) [Optional, 기본값: 0]
  * @param {string|object} ratio - 컨테이너 비율 ('w/h', 'auto', 반응형 객체 { xs, md }) [Optional, 기본값: 'auto']
  * @param {string} fit - 이미지 맞춤 방식 ('cover' | 'contain') [Optional, 기본값: 'cover']
+ * @param {string|number} sharedKey - Shared Element 전환용 키. 지정하면 data-shared-key로 노출되어 역방향 전환의 도착지가 된다 [Optional]
  * @param {object} sx - 추가 스타일 (height, bgcolor 등) [Optional]
  *
  * Example usage:
@@ -31,6 +32,7 @@ export function TimeBlendImage({
   time = 0,
   ratio = 'auto',
   fit = 'cover',
+  sharedKey,
   sx,
 }) {
   const [dayImage, nightImage] = images;
@@ -45,7 +47,10 @@ export function TimeBlendImage({
   };
 
   return (
-    <Box sx={ [{ position: 'relative', width: '100%', aspectRatio: ratio }, ...(Array.isArray(sx) ? sx : [sx])] }>
+    <Box
+      data-shared-key={ sharedKey }
+      sx={ [{ position: 'relative', width: '100%', aspectRatio: ratio }, ...(Array.isArray(sx) ? sx : [sx])] }
+    >
       { dayImage && <Box component="img" src={ dayImage } alt={ alt } sx={ imageSx } /> }
       { dayImage && nightImage && (
         <Box

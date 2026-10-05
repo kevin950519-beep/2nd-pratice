@@ -8,6 +8,7 @@
 src/
 ├── components/          # UI 컴포넌트 (기능 카테고리별 폴더)
 │   ├── card/            # 카드 계열
+│   ├── commerce/        # 장바구니·구매 (CartProvider, CartDrawer, 옵션/수량 등)
 │   ├── container/       # 컨테이너 계열
 │   ├── content-transition/ # 콘텐츠 전환
 │   ├── data-display/    # 데이터 표시 (Table 등)
@@ -23,6 +24,8 @@ src/
 │   ├── scroll/          # 스크롤 기반 인터랙션
 │   ├── templates/       # 페이지 템플릿
 │   └── typography/      # 타이포그래피
+├── pages/               # 라우트 연결 (AppRoutes, ScrollManager 등)
+├── hooks/               # 공통 커스텀 훅 (useSnackbar, useSessionState)
 ├── common/ui/           # 공통 유틸리티 UI (Placeholder, Indicator 등)
 ├── stories/             # Storybook 전용 (style, overview, page, template)
 ├── styles/              # 테마, 글로벌 스타일

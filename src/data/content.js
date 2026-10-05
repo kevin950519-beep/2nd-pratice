@@ -26,9 +26,8 @@ export const content = {
   // Navigation
   navigation: {
     menuItems: [
-      { id: 'brand', label: 'Brand', path: '/brand' },
-      { id: 'collection', label: 'Collection', path: '/collection' },
-      { id: 'shop', label: 'Shop', path: '/shop' },
+      { id: 'home', label: 'Home', path: '/' },
+      { id: 'collection', label: 'Collection', path: '/', sectionId: 'collection' },
     ],
   },
 
@@ -78,13 +77,22 @@ export const content = {
     ],
   },
 
+  // Brand elevation section (scroll-scrubbed videos, played in order)
+  elevation: {
+    scenes: [
+      { id: 'set1' },
+      { id: 'set2' },
+      { id: 'set3' },
+    ],
+  },
+
   // Product showcase
   products: {
     sectionTitle: 'Product Showcase',
     sectionSubtitle: 'Explore brightness and color temperature changes throughout the day',
   },
 
-  // Footer (if needed later)
+  // Footer
   footer: {
     copyright: '© 2025 Lumenstate. All rights reserved.',
   },

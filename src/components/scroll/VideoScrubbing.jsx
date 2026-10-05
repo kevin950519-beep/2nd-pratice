@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
  * @param {Object} sx - MUI sx 스타일 [Optional]
  * @param {Object} scrollRange - 스크롤 범위 매핑 { start: 0, end: 1 } [Optional]
  * @param {function} onProgressChange - 진행도 변경 콜백 (progress: 0-1) [Optional]
+ * @param {number} progress - 외부에서 제어하는 진행도(0-1). 지정하면 자체 스크롤 계산을 끄고 이 값으로만 재생 위치를 정한다 [Optional]
  */
 const VideoScrubbing = ({
   src,
@@ -17,6 +18,7 @@ const VideoScrubbing = ({
   sx = {},
   scrollRange = { start: 0, end: 1 },
   onProgressChange,
+  progress: controlledProgress,
   ...props
 }) => {
   const videoRef = useRef(null);
@@ -58,9 +60,27 @@ const VideoScrubbing = ({
     return () => observer.disconnect();
   }, []);
 
+  const isControlled = controlledProgress != null;
+
+  // 외부 진행도(controlled) 모드: 값이 바뀔 때마다 재생 위치 반영 (메타데이터가 늦게 로드돼도 다시 반영)
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !isInView) return;
+    if (!video || !isControlled) return;
+
+    const apply = () => {
+      if (!video.duration) return;
+      const clamped = Math.max(0, Math.min(1, controlledProgress));
+      video.currentTime = video.duration * clamped;
+    };
+
+    apply();
+    video.addEventListener('loadedmetadata', apply);
+    return () => video.removeEventListener('loadedmetadata', apply);
+  }, [isControlled, controlledProgress]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !isInView || isControlled) return;
 
     let animationFrameId = null;
     let lastScrollTime = 0;
@@ -130,7 +150,7 @@ const VideoScrubbing = ({
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [isInView, containerRef, scrollRange, onProgressChange]);
+  }, [isInView, isControlled, containerRef, scrollRange, onProgressChange]);
 
   return (
     <Box

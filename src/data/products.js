@@ -41,8 +41,29 @@ export const MOUNTING_TYPES = {
   FREESTANDING: 'freestanding',
 };
 
+// Commerce 더미 데이터 (실제 값으로 교체 전까지 id 기반으로 자동 생성)
+const TYPE_CODE = {
+  [PRODUCT_TYPES.CEILING]: 'CL',
+  [PRODUCT_TYPES.STAND]: 'ST',
+  [PRODUCT_TYPES.WALL]: 'WL',
+  [PRODUCT_TYPES.DESK]: 'DK',
+};
+
+/**
+ * 제품 기본 정보에 품번·가격·리드타임·배송 더미 값을 덧붙인다.
+ * - sku: LS-{타입코드}-{id 3자리}
+ * - price: 원(KRW), 10,000원 단위
+ */
+const withCommerce = (product) => ({
+  ...product,
+  sku: `LS-${TYPE_CODE[product.type]}-${String(product.id).padStart(3, '0')}`,
+  price: 190000 + product.id * 17000 - ((product.id * 17000) % 10000),
+  leadTime: '2–3주',
+  shipping: '무료 배송 · 설치 가이드 포함',
+});
+
 // Product Data
-export const products = [
+const baseProducts = [
   {
     id: 1,
     title: 'Lumen Desk Pro',
@@ -284,5 +305,14 @@ export const products = [
     images: productAssets[20]?.images || [],
   },
 ];
+
+export const products = baseProducts.map(withCommerce);
+
+/**
+ * id로 제품 조회
+ * @param {number|string} id - 제품 id
+ * @returns {object|undefined} 제품 (없으면 undefined)
+ */
+export const getProductById = (id) => products.find((product) => String(product.id) === String(id));
 
 export default products;

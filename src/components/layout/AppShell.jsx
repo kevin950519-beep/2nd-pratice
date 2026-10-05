@@ -5,7 +5,7 @@ import { GNB } from '../navigation/GNB';
 /**
  * AppShell 컴포넌트
  *
- * 반응형 레이아웃 쉘. GNB(헤더)와 메인 영역으로 구성된다.
+ * 반응형 레이아웃 쉘. GNB(헤더), 메인 영역, 푸터로 구성된다.
  * GNB가 반응형 네비게이션(Header + Drawer)을 처리한다.
  *
  * Props:
@@ -14,6 +14,7 @@ import { GNB } from '../navigation/GNB';
  * @param {node} headerCollapsible - 모바일에서 드로어로 이동할 요소 [Optional]
  * @param {node} drawerHeader - 드로어 상단 커스텀 요소 [Optional]
  * @param {node} drawerFooter - 드로어 하단 커스텀 요소 [Optional]
+ * @param {node} footer - 메인 아래에 표시될 푸터 (보통 Footer 컴포넌트) [Optional]
  * @param {node} children - 메인 콘텐츠 영역 [Required]
  * @param {string} breakpoint - 반응형 전환 브레이크포인트 ('sm' | 'md' | 'lg') [Optional, 기본값: 'md']
  * @param {number} headerHeight - 헤더 높이 (px) [Optional, 기본값: 64]
@@ -21,6 +22,8 @@ import { GNB } from '../navigation/GNB';
  * @param {boolean} hasHeaderBorder - 헤더 하단 보더 [Optional, 기본값: true]
  * @param {boolean} isHeaderSticky - 헤더 고정 [Optional, 기본값: true]
  * @param {boolean} isHeaderTransparent - 헤더 투명 배경 [Optional, 기본값: false]
+ * @param {boolean} isHeaderTranslucent - 헤더 반투명 배경 + 블러 [Optional, 기본값: false]
+ * @param {boolean} hasCart - 헤더에 장바구니 버튼 표시 (CartProvider 필요) [Optional, 기본값: false]
  * @param {object} sx - 추가 스타일 [Optional]
  *
  * Example usage:
@@ -39,6 +42,7 @@ const AppShell = forwardRef(function AppShell({
   headerCollapsible,
   drawerHeader,
   drawerFooter,
+  footer,
   children,
   breakpoint = 'md',
   headerHeight = 64,
@@ -46,6 +50,8 @@ const AppShell = forwardRef(function AppShell({
   hasHeaderBorder = true,
   isHeaderSticky = true,
   isHeaderTransparent = false,
+  isHeaderTranslucent = false,
+  hasCart = false,
   sx,
   ...props
 }, ref) {
@@ -73,6 +79,8 @@ const AppShell = forwardRef(function AppShell({
         hasBorder={hasHeaderBorder}
         isSticky={isHeaderSticky}
         isTransparent={isHeaderTransparent}
+        isTranslucent={isHeaderTranslucent}
+        hasCart={hasCart}
       />
 
       {/* Main Content */}
@@ -86,6 +94,9 @@ const AppShell = forwardRef(function AppShell({
       >
         {children}
       </Box>
+
+      {/* Footer */}
+      {footer}
     </Box>
   );
 });

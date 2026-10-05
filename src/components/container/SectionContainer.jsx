@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
  * 기본적으로 100% 너비를 가지며, 상하 여백(py)을 제공합니다.
  * 
  * @param {node} children - 콘텐츠
- * @param {string} maxWidth - 내부 콘텐츠의 최대 너비 (PageContainer와 유사) [Optional]
+ * @param {string|number} maxWidth - 최대 너비 (지정 시 가운데 정렬) [Optional]
  * @param {object} sx - 추가 스타일
  */
 export const SectionContainer = ({ children, maxWidth, sx, ...props }) => {
@@ -17,6 +17,7 @@ export const SectionContainer = ({ children, maxWidth, sx, ...props }) => {
       sx={{
         width: '100%',
         py: { xs: 4, md: 6 }, // 기본 섹션 간격
+        ...(maxWidth && { maxWidth, mx: 'auto' }),
         ...sx
       }}
       {...props}
